@@ -1,61 +1,61 @@
 export const wheaterOptions = [
   {
-    url: "../assets/day/sunny.svg".default,
+    url: "../assets/day/sunny.svg",
     day: true,
     type: "sunny",
   },
   {
-    url: "../assets/day/cloudy.svg".default,
+    url: "../assets/day/cloudy.svg",
     day: true,
     type: "cloudy",
   },
   {
-    url: "../assets/day/fog.svg".default,
+    url: "../assets/day/fog.svg",
     day: true,
     type: "fog",
   },
   {
-    url: "../assets/day/rain.svg".default,
+    url: "../assets/day/rain.svg",
     day: true,
     type: "rain",
   },
   {
-    url: "../assets/day/storm.svg".default,
+    url: "../assets/day/storm.svg",
     day: true,
     type: "storm",
   },
   {
-    url: "../assets/day/snow.svg".default,
+    url: "../assets/day/snow.svg",
     day: true,
     type: "snow",
   },
   {
-    url: "../assets/night/cloudy.svg".default,
+    url: "../assets/night/cloudy.svg",
     day: false,
     type: "cloudy",
   },
   {
-    url: "../assets/night/fog.svg".default,
+    url: "../assets/night/fog.svg",
     day: false,
     type: "fog",
   },
   {
-    url: "../assets/night/rain.svg".default,
+    url: "../assets/night/rain.svg",
     day: false,
     type: "rain",
   },
   {
-    url: "../assets/night/snow.svg".default,
+    url: "../assets/night/snow.svg",
     day: false,
     type: "snow",
   },
   {
-    url: "../assets/night/storm.svg".default,
+    url: "../assets/night/storm.svg",
     day: false,
     type: "storm",
   },
   {
-    url: "../assets/night/sunny.svg".default,
+    url: "../assets/night/sunny.svg",
     day: false,
     type: "sunny",
   },

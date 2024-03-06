@@ -15,14 +15,11 @@ const WheaterCard = ({ day, type }) => {
   });
 
   const imgSrcUrl = imageSrc[0].url || ""; //imageSrc stores an object white property like url,day and type and to get only the url from it we using the [] bracets to access the first property of this obj in that case its the url so later we can save it to imgSrcUrl var
+  console.log(imgSrcUrl);
   return (
     <div className="wheaterCard">
       <h1 className="wheaterCard_temp">75°F</h1>
-      <img
-        className="wheaterCrad_Image"
-        src={imgSrcUrl}
-        alt="wheater card"
-      ></img>
+      <img className="wheaterCrad_Image" src={imgSrcUrl} alt="wheater card" />
     </div>
   );
 };

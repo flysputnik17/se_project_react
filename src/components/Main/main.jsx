@@ -1,9 +1,9 @@
-import WheaterCard from "../WheaterCard/wheaterCard";
+import WheaterCard from "../WheaterCard/wheaterCard.jsx";
 import ItemCard from "../ItemModal/ItemCard";
 const Main = () => {
   return (
     <>
-      <WheaterCard day={true} type="storm" />
+      <WheaterCard day={true} type="sunny" />
       <ItemCard />
     </>
   );
