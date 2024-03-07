@@ -1,5 +1,5 @@
 import "./wheaterCard.css";
-import { wheaterOptions } from "../../utils/constants";
+import { wheaterOptions } from "../../utils/constants.jsx";
 
 /*
 the WheaterCard is a var that will be called from the Main.js 
@@ -14,7 +14,7 @@ const WheaterCard = ({ day, type }) => {
     }
   });
 
-  const imgSrcUrl = imageSrc[0].url || ""; //imageSrc stores an object white property like url,day and type and to get only the url from it we using the [] bracets to access the first property of this obj in that case its the url so later we can save it to imgSrcUrl var
+  const imgSrcUrl = imageSrc[0].url; //imageSrc stores an object white property like url,day and type and to get only the url from it we using the [] bracets to access the first property of this obj in that case its the url so later we can save it to imgSrcUrl var
   console.log(imgSrcUrl);
   return (
     <div className="wheaterCard">

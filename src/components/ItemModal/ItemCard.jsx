@@ -11,12 +11,11 @@ const ItemCard = () => {
     };
     return cardElement;
   });
-  console.log("cardElements:", cardElements);
 
   const cards = () => {
     return cardElements.map((cardElement) => {
       return (
-        <li className="cardSection__card">
+        <li className="cardSection__card" key={cardElement.id}>
           <h2 className="cardSection__card-title">{cardElement.name}</h2>
           <img
             className="cardSection__card-img"
