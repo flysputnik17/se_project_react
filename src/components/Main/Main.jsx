@@ -1,4 +1,4 @@
-import WeatherCard from "../WeatherCard/WheaterCard.jsx";
+import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 function Main({ handleCardClick }) {
   return (
