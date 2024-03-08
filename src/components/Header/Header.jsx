@@ -2,7 +2,7 @@ import logo from "../../assets/WTWR.svg";
 import avatar from "../../assets/avatar.svg";
 import "./Header.css";
 
-const Header = ({ handleAddClick }) => {
+function Header({ handleAddClick }) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -27,6 +27,6 @@ const Header = ({ handleAddClick }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Header;

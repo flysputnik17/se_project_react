@@ -5,25 +5,40 @@ import GetWeather from "../../utils/WeatherApi";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
-
+import ItemModal from "../ItemModal/ItemModal.jsx";
 function App() {
-  const [activeModal, setActiveModal] = useState("");
+  const [activeModal, setActiveModal] = useState(""); //react hook  activeModal is the inital value and setActive is the functino that let you change the value
+  const [selectedCard, setSelectCard] = useState({});
 
+  /*
+  the handleAddClick function is passed to the Header component so when the button 
+  in the Header component is clicked the function will be called 
+  */
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+
+  const closeActiveModal = () => {
+    setActiveModal("");
+  };
+
+  const handleCardClick = (card) => {
+    setActiveModal("preview");
+    setSelectCard(card);
   };
 
   return (
     <div className="page">
       <div className="page__content">
         <Header currentLocation={GetWeather} handleAddClick={handleAddClick} />
-        <Main />
+        <Main handleCardClick={handleCardClick} />
         <Footer />
       </div>
       <ModalWithForm
         buttonText="Add garment"
         titleText="New garment"
         activeModal={activeModal}
+        onClose={closeActiveModal}
       >
         <label htmlFor="name" className="modal__label">
           Name
@@ -67,6 +82,11 @@ function App() {
           </label>
         </fieldset>
       </ModalWithForm>
+      <ItemModal
+        activeModal={activeModal}
+        card={selectedCard}
+        onClose={closeActiveModal}
+      />
     </div>
   );
 }

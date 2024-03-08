@@ -7,7 +7,7 @@ the WheaterCard recives object {day,type} and by that we will be able to find th
 by using the filter method on the wheaterOptions array that contain array of objects from the constants.js
 we filtering all the objects untill we find the one that hase the day and type property === to these we give the WheaterCard element from the Main.js
 */
-const WheaterCard = ({ day, type }) => {
+function WheaterCard({ day, type }) {
   const imageSrc = wheaterOptions.filter((i) => {
     if (i.day === day && i.type === type) {
       return i;
@@ -22,6 +22,6 @@ const WheaterCard = ({ day, type }) => {
       <img src={imgSrcUrl} className="wheaterCrad_Image" alt="wheater card" />
     </div>
   );
-};
+}
 
 export default WheaterCard;

@@ -1,7 +1,7 @@
 import "./ItemCard.css";
 import { defaultClothingItems } from "../../utils/constants";
 
-const ItemCard = () => {
+function ItemCard({ onCardClick }) {
   const cardElements = defaultClothingItems.map((item) => {
     const cardElement = {
       id: item._id,
@@ -21,6 +21,9 @@ const ItemCard = () => {
             className="cardSection__card-img"
             src={cardElement.link}
             alt="cardImage"
+            onClick={() => {
+              onCardClick(cardElement);
+            }}
           ></img>
         </li>
       );
@@ -35,6 +38,6 @@ const ItemCard = () => {
       <ul className="cardSection__cardList">{cards()}</ul>
     </div>
   );
-};
+}
 
 export default ItemCard;

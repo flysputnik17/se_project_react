@@ -1,0 +1,39 @@
+.modal__content_type_image {
+  background-color: white;
+  position: relative;
+  max-width: 496px;
+  max-height: 610px;
+  height: 100%;
+  width: 100%;
+  border-radius: 20px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.modal__close-button {
+  z-index: 1;
+}
+
+.modal__image {
+  width: 498px;
+  height: 498px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.modal__footer {
+  background-color: white;
+  padding: 0;
+  margin: 0;
+}
+
+.modal__caption {
+  margin: 0;
+  padding: 0;
+}
+
+.modal__weather {
+  margin: 0;
+  padding: 0;
+}
