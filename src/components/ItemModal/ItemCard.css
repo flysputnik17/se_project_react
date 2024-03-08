@@ -1,7 +1,7 @@
 .cardSection {
   padding: 0;
   max-width: 1360px;
-  margin: 34px 0 40px;
+  margin: 34px 0 171px 0;
 }
 
 .cardSection__title {
@@ -16,11 +16,12 @@
 
 .cardSection__cardList {
   padding: 0;
+  margin: 0;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  gap: 21px;
+  gap: 20px;
 }
 
 .cardSection__card {

@@ -29,7 +29,9 @@ const ItemCard = () => {
 
   return (
     <div className="cardSection">
-      <h1 className="cardSection__title">TEST</h1>
+      <h1 className="cardSection__title">
+        Today is 75° F / You may want to wear:
+      </h1>
       <ul className="cardSection__cardList">{cards()}</ul>
     </div>
   );

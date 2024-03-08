@@ -1,4 +1,4 @@
-import "./wheaterCard.css";
+import "./WheaterCard.css";
 import { wheaterOptions } from "../../utils/constants.jsx";
 
 /*
@@ -19,7 +19,7 @@ const WheaterCard = ({ day, type }) => {
   return (
     <div className="wheaterCard">
       <h1 className="wheaterCard_temp">75°F</h1>
-      <img className="wheaterCrad_Image" src={imgSrcUrl} alt="wheater card" />
+      <img src={imgSrcUrl} className="wheaterCrad_Image" alt="wheater card" />
     </div>
   );
 };

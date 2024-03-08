@@ -8,29 +8,29 @@
   max-height: 40px;
 }
 
-.header_app {
+.header__app {
   display: flex;
   align-items: center;
 }
 
-.header_app-logo {
+.header__app-logo {
   width: 89px;
   height: 40px;
 }
 
-.header_app-text {
+.header__app-text {
   margin: 0 0 5px 24px;
   font-weight: 700;
   size: 20px;
   line-height: 24px;
 }
 
-.header_user {
+.header__user {
   display: flex;
   align-items: center;
 }
 
-.header_user-button {
+.header__user-button {
   padding: 0;
   margin: 8px 20px 8px 0;
   border: 0;
@@ -39,13 +39,13 @@
   line-height: 24px;
   font-weight: 700;
 }
-.header_user-title {
+.header__user-title {
   margin: 8px 12px 7px 0;
   font-weight: 700;
   font-size: 20px;
   line-height: 24.8px;
 }
-.header_user-avatar {
+.header__user-avatar {
   height: 40px;
   width: 40px;
 }

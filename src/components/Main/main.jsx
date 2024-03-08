@@ -1,5 +1,5 @@
-import WheaterCard from "../WheaterCard/wheaterCard.jsx";
-import ItemCard from "../ItemModal/ItemCard";
+import WheaterCard from "../WheaterCard/WheaterCard.jsx";
+import ItemCard from "../ItemModal/ItemCard.jsx";
 const Main = () => {
   return (
     <>
