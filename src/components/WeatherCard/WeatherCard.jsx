@@ -7,19 +7,23 @@ the WheaterCard recives object {day,type} and by that we will be able to find th
 by using the filter method on the wheaterOptions array that contain array of objects from the constants.js
 we filtering all the objects untill we find the one that hase the day and type property === to these we give the WheaterCard element from the Main.js
 */
-function WeatherCard({ day, type }) {
+function WeatherCard({ day, condition, weatherData }) {
   const imageSrc = wheaterOptions.filter((i) => {
-    if (i.day === day && i.type === type) {
+    if (i.day === day && i.condition === condition) {
       return i;
     }
   });
 
-  const imgSrcUrl = imageSrc[0].url; //imageSrc stores an object white property like url,day and type and to get only the url from it we using the [] bracets to access the first property of this obj in that case its the url so later we can save it to imgSrcUrl var
-  console.log(imgSrcUrl);
+  const imgSrcUrl = imageSrc[0]; //imageSrc stores an object white property like url,day and type and to get only the url from it we using the [] bracets to access the first property of this obj in that case its the url so later we can save it to imgSrcUrl var
+
   return (
     <div className="wheaterCard">
-      <h1 className="wheaterCard_temp">75°F</h1>
-      <img src={imgSrcUrl} className="wheaterCrad_Image" alt="wheater card" />
+      <h1 className="wheaterCard_temp">{weatherData.temp.F}°F</h1>
+      <img
+        src={imgSrcUrl.url}
+        className="wheaterCrad_Image"
+        alt={imgSrcUrl.condition}
+      />
     </div>
   );
 }

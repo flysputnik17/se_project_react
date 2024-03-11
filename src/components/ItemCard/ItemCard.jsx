@@ -1,15 +1,18 @@
 import "./ItemCard.css";
 import { defaultClothingItems } from "../../utils/constants";
 
-function ItemCard({ onCardClick }) {
-  const cardElements = defaultClothingItems.map((item) => {
-    const cardElement = {
-      id: item._id,
-      name: item.name,
-      weather: item.weather,
-      link: item.link,
-    };
-    return cardElement;
+/*
+the ItemCard func get the weatherData as a parameter that hold info from the 
+API
+to the cardElements we store the items that will be === to the type of the weather
+we get and after that the card func will display only the items that has
+the same weather type as the weather.type by that the only the items with
+the same type of the current weather will be doplad
+*/
+
+function ItemCard({ onCardClick, weatherData }) {
+  const cardElements = defaultClothingItems.filter((item) => {
+    return item.weather === weatherData.type;
   });
 
   const cards = () => {
@@ -33,7 +36,7 @@ function ItemCard({ onCardClick }) {
   return (
     <div className="cardSection">
       <h1 className="cardSection__title">
-        Today is 75° F / You may want to wear:
+        Today is {weatherData.temp.F}°F / You may want to wear:
       </h1>
       <ul className="cardSection__cardList">{cards()}</ul>
     </div>

@@ -1,10 +1,10 @@
 import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 import ItemCard from "../ItemCard/ItemCard.jsx";
-function Main({ handleCardClick }) {
+function Main({ handleCardClick, weatherData }) {
   return (
     <>
-      <WeatherCard day={true} type="sunny" />
-      <ItemCard onCardClick={handleCardClick} />
+      <WeatherCard day={true} condition="snow" weatherData={weatherData} />
+      <ItemCard onCardClick={handleCardClick} weatherData={weatherData} />
     </>
   );
 }

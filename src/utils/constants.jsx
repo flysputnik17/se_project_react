@@ -1,63 +1,63 @@
 export const wheaterOptions = [
   {
-    url: "../assets/day/sunny.svg",
+    url: new URL("../assets/day/clear.svg", import.meta.url).href,
     day: true,
-    type: "sunny",
+    condition: "clear",
   },
   {
-    url: "../assets/day/cloudy.svg",
+    url: new URL("../assets/day/cloudy.svg", import.meta.url).href,
     day: true,
-    type: "cloudy",
+    condition: "cloudy",
   },
   {
-    url: "../assets/day/fog.svg",
+    url: new URL("../assets/day/fog.svg", import.meta.url).href,
     day: true,
-    type: "fog",
+    condition: "fog",
   },
   {
-    url: "../assets/day/rain.svg",
+    url: new URL("../assets/day/rain.svg", import.meta.url).href,
     day: true,
-    type: "rain",
+    condition: "rain",
   },
   {
-    url: "../assets/day/storm.svg",
+    url: new URL("../assets/day/storm.svg", import.meta.url).href,
     day: true,
-    type: "storm",
+    condition: "storm",
   },
   {
-    url: "../assets/day/snow.svg",
+    url: new URL("../assets/day/snow.svg", import.meta.url).href,
     day: true,
-    type: "snow",
+    condition: "snow",
   },
   {
-    url: "../assets/night/cloudy.svg",
+    url: new URL("../assets/night/cloudy.svg", import.meta.url).href,
     day: false,
-    type: "cloudy",
+    tyconditionpe: "cloudy",
   },
   {
-    url: "../assets/night/fog.svg",
+    url: new URL("../assets/night/fog.svg", import.meta.url).href,
     day: false,
-    type: "fog",
+    condition: "fog",
   },
   {
-    url: "../assets/night/rain.svg",
+    url: new URL("../assets/night/rain.svg", import.meta.url).href,
     day: false,
-    type: "rain",
+    condition: "rain",
   },
   {
-    url: "../assets/night/snow.svg",
+    url: new URL("../assets/night/snow.svg", import.meta.url).href,
     day: false,
-    type: "snow",
+    condition: "snow",
   },
   {
-    url: "../assets/night/storm.svg",
+    url: new URL("../assets/night/storm.svg", import.meta.url).href,
     day: false,
-    type: "storm",
+    condition: "storm",
   },
   {
-    url: "../assets/night/sunny.svg",
+    url: new URL("../assets/night/clear.svg", import.meta.url).href,
     day: false,
-    type: "sunny",
+    condition: "clear",
   },
 ];
 
@@ -99,3 +99,10 @@ export const defaultClothingItems = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
   },
 ];
+
+export const coordinates = {
+  latitude: 32.0853,
+  longitude: 34.781768,
+};
+
+export const APIkey = "eda9d536bdf5ecbb67925a027587af97";

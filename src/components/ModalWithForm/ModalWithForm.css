@@ -27,7 +27,7 @@
 .modal__title {
   margin: 0;
   margin-bottom: 24px;
-  width: 95px;
+  /* width: 95px; */
   height: 20px;
   font-weight: 700;
   font-size: 16px;
