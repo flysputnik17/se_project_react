@@ -18,7 +18,7 @@ function ItemCard({ onCardClick, weatherData }) {
   const cards = () => {
     return cardElements.map((cardElement) => {
       return (
-        <li className="cardSection__card" key={cardElement.id}>
+        <li className="cardSection__card" key={cardElement._id}>
           <h2 className="cardSection__card-title">{cardElement.name}</h2>
           <img
             className="cardSection__card-img"

@@ -1,4 +1,5 @@
 .modal {
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -27,7 +28,6 @@
 .modal__title {
   margin: 0;
   margin-bottom: 24px;
-  /* width: 95px; */
   height: 20px;
   font-weight: 700;
   font-size: 16px;
@@ -35,6 +35,7 @@
 }
 
 .modal__close-button {
+  padding: 0;
   position: absolute;
   top: 20px;
   right: 28px;

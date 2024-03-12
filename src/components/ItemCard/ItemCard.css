@@ -1,4 +1,5 @@
 .cardSection {
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   padding: 0;
   max-width: 1360px;
   margin: 34px 0 171px 0;
@@ -7,7 +8,6 @@
 }
 
 .cardSection__title {
-  /* max-width: 330px; */
   height: 25px;
   margin-top: 0;
   margin-bottom: 34px;

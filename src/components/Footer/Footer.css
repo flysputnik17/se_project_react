@@ -1,5 +1,7 @@
 .footer {
+  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   display: flex;
+  width: 1358px;
   margin-bottom: 24px;
   justify-content: space-between;
 }
@@ -7,7 +9,6 @@
 .footer_user {
   margin: 0;
   padding: 0;
-  max-width: 204px;
   max-height: 20px;
   font-weight: 500;
   font-size: 16px;

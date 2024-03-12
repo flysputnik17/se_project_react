@@ -54,11 +54,32 @@ function App() {
   useEffect(() => {
     GetWeather(coordinates, APIkey)
       .then((data) => {
-        console.log(data);
         const filterData = filterWeatherData(data);
         setWeatherData(filterData);
       })
       .catch(console.error());
+  }, []);
+
+  //useEffect to handle the Escape button cllick to close a modal
+  useEffect(() => {
+    const handleExit = (evt) => {
+      if (evt.key === "Escape") {
+        closeActiveModal();
+      }
+    };
+    document.addEventListener("keydown", handleExit);
+    return () => document.removeEventListener("keydown", handleExit);
+  }, []);
+
+  //useEffect to handle the mouse click outside of the modal to be closed
+  useEffect(() => {
+    const handleOverly = (evt) => {
+      if (evt.target.classList.contains("modal__opened")) {
+        closeActiveModal();
+      }
+    };
+    document.addEventListener("mousedown", handleOverly);
+    return () => document.removeEventListener("mousedown", handleOverly);
   }, []);
 
   return (
@@ -66,7 +87,6 @@ function App() {
       <div className="page__content">
         <Header weatherData={weatherData} handleAddClick={handleAddClick} />
         <Main handleCardClick={handleCardClick} weatherData={weatherData} />
-
         <Footer />
       </div>
       <ModalWithForm
@@ -82,6 +102,7 @@ function App() {
             className="modal__input"
             id="name"
             placeholder="Name"
+            required
           />
         </label>
         <label htmlFor="imagURL" className="modal__label">
@@ -91,6 +112,7 @@ function App() {
             className="modal__input"
             id="imageURL"
             placeholder="image URL"
+            required
           />
         </label>
         <fieldset className="modal__radio-buttons">
@@ -99,21 +121,39 @@ function App() {
           </legend>
           <label htmlFor="hot" className="modal__label modal__label_type_radio">
             Hot
-            <input type="radio" className="modal__radio-input" id="hot" />
+            <input
+              type="radio"
+              className="modal__radio-input"
+              id="hot"
+              name="radioButton"
+              value="hot"
+            />
           </label>
           <label
             htmlFor="warm"
             className="modal__label modal__label_type_radio"
           >
             Warm
-            <input type="radio" className="modal__radio-input" id="warm" />
+            <input
+              type="radio"
+              className="modal__radio-input"
+              id="warm"
+              name="radioButton"
+              value="warm"
+            />
           </label>
           <label
             htmlFor="cold"
             className="modal__label modal__label_type_radio"
           >
             Cold
-            <input type="radio" className="modal__radio-input" id="cold" />
+            <input
+              type="radio"
+              className="modal__radio-input"
+              id="cold"
+              name="radioButton"
+              value="cold"
+            />
           </label>
         </fieldset>
       </ModalWithForm>
