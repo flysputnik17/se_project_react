@@ -9,7 +9,7 @@ function Header({ handleAddClick, weatherData }) {
   });
 
   return (
-    <div className="header">
+    <header className="header">
       <div className="header__app">
         <img className="header__app-logo" src={logo} alt="logo"></img>
         <h1 className="header__app-text">
@@ -27,7 +27,7 @@ function Header({ handleAddClick, weatherData }) {
         <h2 className="header__user-title">Pavel Bandurin</h2>
         <img className="header__user-avatar" src={avatar} alt="avatar"></img>
       </div>
-    </div>
+    </header>
   );
 }
 

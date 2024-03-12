@@ -23,7 +23,7 @@ function ItemCard({ onCardClick, weatherData }) {
           <img
             className="cardSection__card-img"
             src={cardElement.link}
-            alt="cardImage"
+            alt={cardElement.name}
             onClick={() => {
               onCardClick(cardElement);
             }}

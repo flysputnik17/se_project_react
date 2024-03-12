@@ -9,9 +9,7 @@ function ModalWithForm({
   onClose,
 }) {
   return (
-    <div
-      className={`modal ${activeModal === "add-garment" && "modal__opened"}`}
-    >
+    <div className={`modal ${activeModal === "add-garment" && "modal_opened"}`}>
       <div className="modal__content">
         <h1 className="modal__title">{titleText}</h1>
         <button type="button" className="modal__close-button" onClick={onClose}>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Header from "../Header/Header.jsx";
-import { GetWeather, filterWeatherData } from "../../utils/WeatherApi";
+import { getWeather, filterWeatherData } from "../../utils/WeatherApi";
 import { coordinates, APIkey } from "../../utils/constants.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
@@ -52,16 +52,17 @@ function App() {
   name of the city 
   */
   useEffect(() => {
-    GetWeather(coordinates, APIkey)
+    getWeather(coordinates, APIkey)
       .then((data) => {
         const filterData = filterWeatherData(data);
         setWeatherData(filterData);
       })
-      .catch(console.error());
+      .catch(console.error);
   }, []);
 
   //useEffect to handle the Escape button cllick to close a modal
   useEffect(() => {
+    if (!activeModal) return;
     const handleExit = (evt) => {
       if (evt.key === "Escape") {
         closeActiveModal();
@@ -69,18 +70,19 @@ function App() {
     };
     document.addEventListener("keydown", handleExit);
     return () => document.removeEventListener("keydown", handleExit);
-  }, []);
+  }, [activeModal]);
 
   //useEffect to handle the mouse click outside of the modal to be closed
   useEffect(() => {
+    if (!activeModal) return;
     const handleOverly = (evt) => {
-      if (evt.target.classList.contains("modal__opened")) {
+      if (evt.target.classList.contains("modal_opened")) {
         closeActiveModal();
       }
     };
     document.addEventListener("mousedown", handleOverly);
     return () => document.removeEventListener("mousedown", handleOverly);
-  }, []);
+  }, [activeModal]);
 
   return (
     <div className="page">
@@ -105,7 +107,7 @@ function App() {
             required
           />
         </label>
-        <label htmlFor="imagURL" className="modal__label">
+        <label htmlFor="imageURL" className="modal__label">
           Image
           <input
             type="url"
