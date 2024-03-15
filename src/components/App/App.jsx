@@ -56,6 +56,7 @@ function App() {
       .then((data) => {
         const filterData = filterWeatherData(data);
         setWeatherData(filterData);
+        debugger;
       })
       .catch(console.error);
   }, []);
@@ -94,8 +95,8 @@ function App() {
       <ModalWithForm
         buttonText="Add garment"
         titleText="New garment"
-        activeModal={activeModal}
         onClose={closeActiveModal}
+        isOpen={activeModal === "add-garment"}
       >
         <label htmlFor="name" className="modal__label">
           Name

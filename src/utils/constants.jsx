@@ -7,7 +7,7 @@ export const wheaterOptions = [
   {
     url: new URL("../assets/day/cloudy.svg", import.meta.url).href,
     day: true,
-    condition: "cloudy",
+    condition: "Clouds",
   },
   {
     url: new URL("../assets/day/fog.svg", import.meta.url).href,
@@ -99,6 +99,18 @@ export const defaultClothingItems = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4",
   },
 ];
+
+export const defaultWeatherOptions = {
+  day: {
+    day: true,
+    //condition for alt?
+    url: new URL("../assets/day/default.svg", import.meta.url).href,
+  },
+  night: {
+    day: false,
+    url: new URL("../assets/night/default.svg", import.meta.url).href,
+  },
+};
 
 export const coordinates = {
   latitude: 32.0853,

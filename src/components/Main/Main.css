@@ -1,4 +1,4 @@
-/* .cardSection {
+.cardSection {
   font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
   padding: 0;
   max-width: 1360px;
@@ -25,26 +25,4 @@
   flex-wrap: wrap;
   flex-direction: row;
   gap: 20px;
-} */
-
-.cardSection__card {
-  position: relative;
-  max-width: 325px;
-  max-height: 328px;
-}
-.cardSection__card-title {
-  position: absolute;
-  left: 125px;
-  top: 15px;
-  width: 73px;
-  height: 24px;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 20px;
-}
-
-.cardSection__card-img {
-  border-radius: 10%;
-  max-width: 325px;
-  max-height: 328px;
 }

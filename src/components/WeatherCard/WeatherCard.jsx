@@ -1,5 +1,5 @@
 import "./WheaterCard.css";
-import { wheaterOptions } from "../../utils/constants.jsx";
+import { wheaterOptions, defaultWeatherOptions } from "../../utils/constants";
 
 /*
 the WheaterCard is a var that will be called from the Main.js 
@@ -8,24 +8,30 @@ by using the filter method on the wheaterOptions array that contain array of obj
 we filtering all the objects untill we find the one that hase the day and type property === to these we give the WheaterCard element from the Main.js
 */
 function WeatherCard({ weatherData }) {
-  const filterdOptions = wheaterOptions.filter((option) => {
+  const filteredOptions = wheaterOptions.filter((option) => {
     return (
       option.day === weatherData.isDay &&
       option.condition === weatherData.condition
     );
   });
+  console.log(filteredOptions);
 
-  const weatherOption = filterdOptions[0];
+  let weatherOption;
+  if (filteredOptions.length === 0) {
+    weatherOption = defaultWeatherOptions[weatherData.isDay ? "day" : "night"];
+  } else {
+    weatherOption = filteredOptions[0];
+  }
 
   return (
-    <div className="wheaterCard">
-      <h1 className="wheaterCard_temp">{weatherData.temp.F}°F</h1>
+    <section className="wheaterCard">
+      <p className="wheaterCard_temp">{weatherData.temp.F}°F</p>
       <img
         src={weatherOption?.url}
         className="wheaterCrad_Image"
         alt={weatherOption?.condition}
       />
-    </div>
+    </section>
   );
 }
 
