@@ -32,7 +32,7 @@ export const wheaterOptions = [
   {
     url: new URL("../assets/night/cloudy.svg", import.meta.url).href,
     day: false,
-    tyconditionpe: "cloudy",
+    tyconditionpe: "Clouds",
   },
   {
     url: new URL("../assets/night/fog.svg", import.meta.url).href,

@@ -14,7 +14,6 @@ function WeatherCard({ weatherData }) {
       option.condition === weatherData.condition
     );
   });
-  console.log(filteredOptions);
 
   let weatherOption;
   if (filteredOptions.length === 0) {
