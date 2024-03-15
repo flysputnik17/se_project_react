@@ -8,6 +8,7 @@ by using the filter method on the wheaterOptions array that contain array of obj
 we filtering all the objects untill we find the one that hase the day and type property === to these we give the WheaterCard element from the Main.js
 */
 function WeatherCard({ weatherData }) {
+  debugger;
   const filteredOptions = wheaterOptions.filter((option) => {
     return (
       option.day === weatherData.isDay &&
