@@ -9,7 +9,7 @@ function Main({ handleCardClick, weatherData }) {
 
       <section className="cardSection">
         <p className="cardSection__title">
-          Today is {weatherData.temp.F}°F / You may want to wear:
+          Today is {weatherData.temp.F} / You may want to wear:
         </p>
         <ul className="cardSection__cardList">
           {defaultClothingItems

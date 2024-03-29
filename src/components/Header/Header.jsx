@@ -1,5 +1,6 @@
 import logo from "../../assets/WTWR.svg";
 import avatar from "../../assets/avatar.svg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./Header.css";
 
 function Header({ handleAddClick, weatherData }) {
@@ -17,6 +18,7 @@ function Header({ handleAddClick, weatherData }) {
         </h1>
       </div>
       <div className="header__user">
+        <ToggleSwitch />
         <button
           className="header__user-button"
           type="button"
