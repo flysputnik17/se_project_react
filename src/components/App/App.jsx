@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import { getWeather, filterWeatherData } from "../../utils/WeatherApi";
@@ -103,7 +104,19 @@ function App() {
       >
         <div className="page__content">
           <Header weatherData={weatherData} handleAddClick={handleAddClick} />
-          <Main handleCardClick={handleCardClick} weatherData={weatherData} />
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Main
+                  handleCardClick={handleCardClick}
+                  weatherData={weatherData}
+                />
+              }
+            />
+            <Route path="/profile" element={<p>test</p>} />
+          </Routes>
+
           <Footer />
         </div>
         <ModalWithForm
