@@ -12,13 +12,13 @@
   cursor: pointer;
   width: 56px;
   height: 28px;
-  background: #7e7e7e;
   border-radius: 100px;
+  border: 2px solid black;
   position: relative;
   transition: background-color 0.2s;
 }
 
-.react-switch-label .react-switch-button {
+.react-switch__slider {
   content: "";
   position: absolute;
   top: 0;
@@ -29,33 +29,30 @@
   transition: 0.4s;
   background: #000000;
   box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
-}
-
-.react-switch-checkbox:checked + .react-switch-label .react-switch-button {
-  left: calc(100% - 2px);
-  transform: translateX(-100%);
-}
-
-.react-switch-label:active .react-switch-button {
-  width: 60px;
+  z-index: -1;
 }
 .react-switch-label-F {
-  color: white;
-  z-index: 1;
-  font-size: 14px;
-  line-height: 17px;
-  font-weight: 700;
-  align-self: center;
-  position: absolute;
-  left: 10px;
+  top: 0px;
+  left: 0px;
 }
 
 .react-switch-label-C {
-  color: white;
-  z-index: 1;
-  font-size: 14px;
-  line-height: 17px;
-  font-weight: 700;
+  top: 0px;
+  left: 28px;
+}
+
+.switch__temp-F {
   position: absolute;
-  right: 10px;
+  left: 7px;
+  color: #00000080;
+}
+
+.switch__temp-C {
+  position: absolute;
+  right: 7px;
+  color: #00000080;
+}
+
+.switch__active {
+  color: white;
 }

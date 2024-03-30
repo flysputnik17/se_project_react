@@ -7,7 +7,8 @@ import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.JSX";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.JSX";
+// import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 
 function App() {
   /*the weatherData is an object that hase type,temp and city property
@@ -181,6 +182,7 @@ function App() {
           card={selectedCard}
           onClose={closeActiveModal}
         />
+        {/* <AddItemModal /> */}
       </CurrentTemperatureUnitContext.Provider>
     </div>
   );

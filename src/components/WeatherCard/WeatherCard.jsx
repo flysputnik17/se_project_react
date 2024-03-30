@@ -1,7 +1,7 @@
 import "./WheaterCard.css";
 import { wheaterOptions, defaultWeatherOptions } from "../../utils/constants";
-import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext.JSX";
-import React from "react";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.JSX";
+import { useContext } from "react";
 
 /*
 the WheaterCard is a var that will be called from the Main.js 
@@ -10,6 +10,7 @@ by using the filter method on the wheaterOptions array that contain array of obj
 we filtering all the objects untill we find the one that hase the day and type property === to these we give the WheaterCard element from the Main.js
 */
 function WeatherCard({ weatherData }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const filteredOptions = wheaterOptions.filter((option) => {
     return (
       option.day === weatherData.isDay &&

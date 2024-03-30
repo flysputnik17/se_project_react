@@ -1,22 +1,45 @@
+import { useContext } from "react";
 import "./ToggleSwitch.css";
+import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.JSX";
 
-function ToggleSwitch({ currentTemperatureUnit, setCurrentTemperatureUnit }) {
+const ToggleSwitch = () => {
+  const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
+    CurrentTemperatureUnitContext
+  );
   return (
     <>
       <input
         checked={currentTemperatureUnit}
-        onChange={setCurrentTemperatureUnit}
+        onChange={handleToggleSwitchChange}
         className="react-switch-checkbox"
         id={`react-switch-new`}
         type="checkbox"
       />
       <label className="react-switch-label" htmlFor={`react-switch-new`}>
-        <span className={`react-switch-button`} />
-        <span className="react-switch-label-F">F</span>
-        <span className="react-switch-label-C">C</span>
+        <span
+          className={
+            currentTemperatureUnit === "F"
+              ? "react-switch__slider react-switch-label-F"
+              : "react-switch__slider react-switch-label-C"
+          }
+        />
+        <p
+          className={`switch__temp-F ${
+            currentTemperatureUnit === "F" && "switch__active"
+          }`}
+        >
+          F
+        </p>
+        <p
+          className={`switch__temp-C ${
+            currentTemperatureUnit === "C" && "switch__active"
+          }`}
+        >
+          C
+        </p>
       </label>
     </>
   );
-}
+};
 
 export default ToggleSwitch;
