@@ -10,6 +10,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.JSX";
 // import AddItemModal from "../AddItemModal/AddItemModal.jsx";
+import Profile from "../Profile/Profile.jsx";
 
 function App() {
   /*the weatherData is an object that hase type,temp and city property
@@ -114,7 +115,15 @@ function App() {
                 />
               }
             />
-            <Route path="/profile" element={<p>test</p>} />
+            <Route
+              path="/profile"
+              element={
+                <Profile
+                  handleCardClick={handleCardClick}
+                  handleAddClick={handleAddClick}
+                />
+              }
+            />
           </Routes>
 
           <Footer />

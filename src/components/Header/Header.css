@@ -18,6 +18,7 @@
 .header__app-logo {
   width: 89px;
   height: 40px;
+  background-image: url("../../assets/WTWR.svg");
 }
 
 .header__app-text {
@@ -37,7 +38,6 @@
   margin: 8px 20px 8px 0;
   border: 0;
   cursor: pointer;
-
   font-size: 20px;
   line-height: 24px;
   font-weight: 700;
@@ -47,7 +47,10 @@
   font-weight: 700;
   font-size: 20px;
   line-height: 24.8px;
+  text-decoration: none;
+  color: black;
 }
+
 .header__user-avatar {
   height: 40px;
   width: 40px;
