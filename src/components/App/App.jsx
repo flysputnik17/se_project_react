@@ -19,14 +19,17 @@ function App() {
   values of the weatherData property 
    
    */
-  const [weatherData, setWeatherData] = useState({
-    type: "",
-    temp: {
-      F: 999,
-      C: 999,
+  const [weatherData, setWeatherData] = useState(
+    {
+      type: "",
+      temp: {
+        F: 999,
+        C: 999,
+      },
+      city: "",
     },
-    city: "",
-  });
+    []
+  );
 
   const [activeModal, setActiveModal] = useState(""); //react hook  activeModal is the inital value and setActive is the functino that let you change the value
   const [selectedCard, setSelectCard] = useState({});
@@ -204,7 +207,7 @@ function App() {
           card={selectedCard}
           onClose={closeActiveModal}
         />
-        {/* <AddItemModal /> */}
+        {/* <AddItemModal isOpen={activeModal} onCloseModal={closeActiveModal} /> */}
       </CurrentTemperatureUnitContext.Provider>
     </div>
   );

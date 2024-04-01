@@ -10,14 +10,19 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
 
   // create onChange handlers corresponding to each state variable
 
+  if (isOpen === "add-garment") {
+    
+  }
+  
   function handleSubmit(e) {
-    // prevent default behavior
+    e.preventDefault();
     // call onAddItem with appropriate arguments
+    onCloseModal();
   }
 
   return (
-    {/* don't forget to pass appropriate props to ModalWithForm */}
-    <ModalWithForm
+    <>
+      <ModalWithForm
           buttonText="Add garment"
           titleText="New garment"
           onClose={closeActiveModal}
@@ -88,6 +93,9 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             </label>
           </fieldset></>
         </ModalWithForm>
+    </>
+    {/* don't forget to pass appropriate props to ModalWithForm */}
+    
   );
 };
 
