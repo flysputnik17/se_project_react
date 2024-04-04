@@ -68,20 +68,16 @@ function App() {
       });
   };
 
-  // const deleteSelectedItem = (item) => {
-  //   clothingItems.filter(!item);
-  //   console.log("clothingItems", clothingItems);
-  // };
-
   const handleDeleteItem = (item) => {
     console.log("item:", item);
     api
-      .deleteItem(selectedCard._id)
+      .deleteItem(item._id)
       .then(() => {
-        const newclothingItems = clothingItems.filter((item) => {
-          item._id !== selectedCard._id;
-        });
-        setClothingItems(newclothingItems);
+        setClothingItems(
+          clothingItems.filter((item) => {
+            return item !== selectedCard;
+          })
+        );
         closeActiveModal();
       })
       .catch((err) => {
