@@ -6,11 +6,16 @@ import { getWeather, filterWeatherData } from "../../utils/WeatherApi";
 import { coordinates, APIkey } from "../../utils/constants.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
-
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.JSX";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
+import Api from "../../utils/api.jsx";
+
+const api = new Api({
+  baseUrl: "http://localhost:3001",
+  headers: { "Content-Type": "application/json" },
+});
 
 function App() {
   /*the weatherData is an object that hase type,temp and city property
@@ -33,6 +38,7 @@ function App() {
 
   const [activeModal, setActiveModal] = useState(""); //react hook  activeModal is the inital value and setActive is the functino that let you change the value
   const [selectedCard, setSelectCard] = useState({});
+  const [clothingItems, setClothingItems] = useState([]);
 
   /*
   the handleAddClick function is passed to the Header component so when the button 
@@ -51,8 +57,36 @@ function App() {
     setSelectCard(card);
   };
 
-  const onAddItem = (values) => {
-    console.log(values);
+  const handleAddItemSubmit = (values) => {
+    api
+      .addNewItem(values)
+      .then((item) => {
+        setClothingItems([item, ...clothingItems]);
+      })
+      .catch((err) => {
+        console.error(`${err} Failed in handleAddItemSubmit`);
+      });
+  };
+
+  // const deleteSelectedItem = (item) => {
+  //   clothingItems.filter(!item);
+  //   console.log("clothingItems", clothingItems);
+  // };
+
+  const handleDeleteItem = (item) => {
+    console.log("item:", item);
+    api
+      .deleteItem(selectedCard._id)
+      .then(() => {
+        const newclothingItems = clothingItems.filter((item) => {
+          item._id !== selectedCard._id;
+        });
+        setClothingItems(newclothingItems);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.error(`${err} Failed in handleDeleteItem`);
+      });
   };
 
   /*
@@ -97,6 +131,16 @@ function App() {
     return () => document.removeEventListener("mousedown", handleOverly);
   }, [activeModal]);
 
+  //useEffect for rendering the initial items
+  useEffect(() => {
+    api
+      .getInitialItem()
+      .then((res) => {
+        setClothingItems(res);
+      })
+      .catch(console.error);
+  }, []);
+
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   const handleToggleSwitchChange = () => {
@@ -119,6 +163,7 @@ function App() {
                 <Main
                   handleCardClick={handleCardClick}
                   weatherData={weatherData}
+                  clothingItems={clothingItems}
                 />
               }
             />
@@ -128,6 +173,7 @@ function App() {
                 <Profile
                   handleCardClick={handleCardClick}
                   handleAddClick={handleAddClick}
+                  clothingItems={clothingItems}
                 />
               }
             />
@@ -139,7 +185,7 @@ function App() {
           <AddItemModal
             isOpen={activeModal === "add-garment"}
             closeActiveModal={closeActiveModal}
-            onAddItem={onAddItem}
+            onAddItem={handleAddItemSubmit}
           />
         )}
         {activeModal === "preview" && (
@@ -147,6 +193,7 @@ function App() {
             activeModal={activeModal}
             card={selectedCard}
             onClose={closeActiveModal}
+            onDelete={handleDeleteItem}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>
