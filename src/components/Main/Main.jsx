@@ -6,7 +6,7 @@ import { useContext } from "react";
 function Main({ handleCardClick, weatherData, clothingItems }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   return (
-    <>
+    <main>
       <WeatherCard weatherData={weatherData} />
 
       <section className="cardSection">
@@ -30,7 +30,7 @@ function Main({ handleCardClick, weatherData, clothingItems }) {
             })}
         </ul>
       </section>
-    </>
+    </main>
   );
 }
 

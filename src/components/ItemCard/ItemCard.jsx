@@ -10,7 +10,7 @@ function ItemCard({ onCardClick, item }) {
     onCardClick(item);
   };
   return (
-    <li className="cardSection__card" key={item._id}>
+    <li className="cardSection__card">
       <h2 className="cardSection__card-title">{item.name}</h2>
       <img
         className="cardSection__card-img"

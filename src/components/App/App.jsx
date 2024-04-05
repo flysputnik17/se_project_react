@@ -62,6 +62,7 @@ function App() {
       .addNewItem(values)
       .then((item) => {
         setClothingItems([item, ...clothingItems]);
+        closeActiveModal();
       })
       .catch((err) => {
         console.error(`${err} Failed in handleAddItemSubmit`);
@@ -179,7 +180,6 @@ function App() {
         {activeModal === "add-garment" && (
           <AddItemModal
             isOpen={activeModal === "add-garment"}
-            closeActiveModal={closeActiveModal}
             onAddItem={handleAddItemSubmit}
           />
         )}
