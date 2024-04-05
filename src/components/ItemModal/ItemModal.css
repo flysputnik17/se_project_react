@@ -1,15 +1,9 @@
 .modal__content_type_image {
-  font-family: "Cabinet Grotesk", Arial, Helvetica, sans-serif;
-  background-color: white;
   position: relative;
-  max-width: 496px;
-  max-height: 610px;
-  height: 100%;
-  width: 100%;
+  background-color: #fff;
   border-radius: 20px;
-  display: flex;
-  align-items: flex-end;
-  box-sizing: content-box;
+  overflow: hidden;
+  max-height: 610px;
 }
 
 .modal__close-button {
@@ -19,41 +13,44 @@
 
 .modal__image {
   width: 100%;
-  height: 498px;
-  position: absolute;
-  top: 0;
-  left: 0;
+  max-height: 498px;
+  object-fit: cover;
+  aspect-ratio: 1;
 }
 
 .modal__footer {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.modal__footer-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.modal__footer-info-caption {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 20px 0 0 32px;
+}
+
+.modal__footer-info-weather {
+  margin: 12px 0 32px 32px;
   padding: 0;
-  margin: 20px 0 32px 32px;
+  color: black;
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
-  display: flex;
-  flex-direction: column;
-}
-
-.modal__caption {
-  margin: 0;
-  padding: 0;
-  color: black;
-  width: 36px;
-  height: 24px;
-}
-
-.modal__weather {
-  margin-top: 12px;
-  padding: 0;
-  color: black;
 }
 
 .modal__delete-button {
   color: #ff4d00;
-  width: 101px;
-  height: 24px;
+  background-color: transparent;
   border: none;
+  font-size: 20px;
+  font-weight: 700;
   cursor: pointer;
-  background: none;
+  margin: 20px 32px 0 0;
 }

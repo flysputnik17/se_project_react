@@ -69,7 +69,6 @@ function App() {
   };
 
   const handleDeleteItem = (item) => {
-    console.log("item:", item);
     api
       .deleteItem(item._id)
       .then(() => {
