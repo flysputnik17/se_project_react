@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import { getWeather, filterWeatherData } from "../../utils/WeatherApi";
@@ -11,6 +11,7 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import Api from "../../utils/api.jsx";
+import Login from "../Login/Login.jsx";
 
 const api = new Api({
   baseUrl: "http://localhost:3001",
@@ -145,6 +146,9 @@ function App() {
       : setCurrentTemperatureUnit("F");
   };
 
+  //setting the user login status to be false by default for now
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -153,6 +157,17 @@ function App() {
         <div className="page__content">
           <Header weatherData={weatherData} handleAddClick={handleAddClick} />
           <Routes>
+            <Route
+              path="*"
+              element={
+                isLoggedIn ? (
+                  <Navigate to="/" replace />
+                ) : (
+                  <Navigate to="/login" replace />
+                )
+              }
+            />
+            <Route path="/login" element={<Login />} />
             <Route
               path="/"
               element={
