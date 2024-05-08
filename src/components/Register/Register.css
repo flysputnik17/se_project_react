@@ -1,4 +1,4 @@
-.login {
+.register {
   border: 2px solid #000000;
   display: flex;
   flex-direction: column;
@@ -8,15 +8,15 @@
   margin: 0 auto;
 }
 
-.login__welcome {
+.register__welcome {
   margin-top: 32px;
 }
 
-.login__error {
+.register__error {
   color: #000000;
 }
 
-.login__form {
+.register__form {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -25,47 +25,41 @@
   margin-top: 12px;
 }
 
-.login__form input {
-  border: 2px solid #030303;
-  color: #ffffff;
+.register__form input {
+  border: 2px solid #000000;
+  color: #000000;
 }
 
-.login__form label {
+.register__form label {
   margin-top: 12px;
   margin-bottom: 6px;
 }
 
-.login__link {
+.register__button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.register__link {
   color: #ffffff;
   text-align: center;
   margin-top: 32px;
+  width: 20%;
+  background-color: black;
+  border: none;
 }
 
-.login__signup {
+.register__signin {
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 32px;
 }
 
-.login__signup p {
+.register__signin p {
   margin-right: 12px;
 }
 
-.signup__link {
+.register__login-link {
   color: rgb(0, 0, 0);
-}
-
-.login__button-container {
-  display: flex;
-  justify-content: center;
-}
-
-.login__link {
-  color: #fefffe;
-  text-align: center;
-  margin-top: 32px;
-  width: 20%;
-  background-color: black;
-  border: none;
 }

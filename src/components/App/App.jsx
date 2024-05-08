@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import { getWeather, filterWeatherData } from "../../utils/WeatherApi";
@@ -12,6 +12,9 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import Api from "../../utils/api.jsx";
 import Login from "../Login/Login.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import * as auth from "../../utils/auth.js";
+import Register from "../Register/Register.jsx";
 
 const api = new Api({
   baseUrl: "http://localhost:3001",
@@ -149,6 +152,25 @@ function App() {
   //setting the user login status to be false by default for now
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  const navigate = useNavigate();
+
+  const handleRegistration = ({
+    username,
+    email,
+    password,
+    confirmPassword,
+  }) => {
+    if (password === confirmPassword) {
+      auth
+        .register(username, password, email)
+        .then(() => {
+          console.log("successs");
+          navigate("/login");
+        })
+        .catch(console.error);
+    }
+  };
+
   return (
     <div className="page">
       <CurrentTemperatureUnitContext.Provider
@@ -157,35 +179,38 @@ function App() {
         <div className="page__content">
           <Header weatherData={weatherData} handleAddClick={handleAddClick} />
           <Routes>
+            <Route path="/login" element={<Login />} />
             <Route
-              path="*"
+              path="/register"
               element={
-                isLoggedIn ? (
-                  <Navigate to="/" replace />
-                ) : (
-                  <Navigate to="/login" replace />
-                )
+                <div className="registerContainer">
+                  <Register handleRegistration={handleRegistration} />
+                </div>
               }
             />
-            <Route path="/login" element={<Login />} />
+
             <Route
               path="/"
               element={
-                <Main
-                  handleCardClick={handleCardClick}
-                  weatherData={weatherData}
-                  clothingItems={clothingItems}
-                />
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <Main
+                    handleCardClick={handleCardClick}
+                    weatherData={weatherData}
+                    clothingItems={clothingItems}
+                  />
+                </ProtectedRoute>
               }
             />
             <Route
               path="/profile"
               element={
-                <Profile
-                  handleCardClick={handleCardClick}
-                  handleAddClick={handleAddClick}
-                  clothingItems={clothingItems}
-                />
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <Profile
+                    handleCardClick={handleCardClick}
+                    handleAddClick={handleAddClick}
+                    clothingItems={clothingItems}
+                  />
+                </ProtectedRoute>
               }
             />
           </Routes>
