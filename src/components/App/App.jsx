@@ -15,6 +15,8 @@ import Login from "../Login/Login.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import * as auth from "../../utils/auth.js";
 import Register from "../Register/Register.jsx";
+import { setToken, getToken } from "../../utils/token.js";
+import { getUserInfo } from "../../utils/api.js";
 
 const api = new Api({
   baseUrl: "http://localhost:3001",
@@ -141,6 +143,22 @@ function App() {
       .catch(console.error);
   }, []);
 
+  useEffect(() => {
+    const jwt = getToken();
+    if (!jwt) {
+      return;
+    }
+    getUserInfo(jwt)
+      .then(({ username, email }) => {
+        // If the response is successful, log the user in, save their
+        // data to state, and navigate them to /ducks.
+        setIsLoggedIn(true);
+        setUserData({ username, email });
+        navigate("/");
+      })
+      .catch(console.error);
+  }, []);
+
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   const handleToggleSwitchChange = () => {
@@ -188,9 +206,10 @@ function App() {
       .then((data) => {
         // Verify that a jwt is included before logging the user in.
         if (data.jwt) {
+          setToken(data.jwt);
           setUserData(data.user); //save user's data to state
           setIsLoggedIn(true); //log the user in
-          navigate("/profile"); //send them to /profile
+          navigate("/"); //send them to /profile
         }
         console.log(data);
       })
@@ -203,7 +222,12 @@ function App() {
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
         <div className="page__content">
-          <Header weatherData={weatherData} handleAddClick={handleAddClick} />
+          <Header
+            weatherData={weatherData}
+            handleAddClick={handleAddClick}
+            isLoggedIn={isLoggedIn}
+            userData={userData}
+          />
           <Routes>
             <Route
               path="/login"
@@ -239,9 +263,11 @@ function App() {
               element={
                 <ProtectedRoute isLoggedIn={isLoggedIn}>
                   <Profile
+                    userData={userData}
                     handleCardClick={handleCardClick}
                     handleAddClick={handleAddClick}
                     clothingItems={clothingItems}
+                    setIsLoggedIn={setIsLoggedIn}
                   />
                 </ProtectedRoute>
               }

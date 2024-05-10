@@ -4,6 +4,8 @@
   margin: 47px 116px 0 0;
   width: 229px;
   height: 56px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
 }
 
 .profile__userSection-avatar {
@@ -13,6 +15,17 @@
 }
 
 .profile__userSection-title {
+  /* width: 157px; */
+  height: 25px;
+  margin: 8px 12px 7px 0;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24.8px;
+  text-decoration: none;
+  color: black;
+}
+
+.profile__userSection-email {
   width: 157px;
   height: 25px;
   margin: 8px 12px 7px 0;
@@ -21,4 +34,14 @@
   line-height: 24.8px;
   text-decoration: none;
   color: black;
+}
+.profile__userSection-logout {
+  padding: 0;
+  margin: 8px 20px 8px 0;
+  border: 0;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 24px;
+  font-weight: 700;
+  background: none;
 }
