@@ -44,14 +44,14 @@ function Login({ handleLogin }) {
 
           <div className="login__button-container">
             <button type="submit" className="login__link">
-              LOGIN
+              Log in
             </button>
           </div>
         </form>
         <div className="login__signin">
           <p>Dont have acount?</p>
           <Link to="/register" className="register__login-link">
-            Register here
+            Sign up here
           </Link>
         </div>
       </div>
