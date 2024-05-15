@@ -12,6 +12,20 @@ export default class Api {
     return Promise.reject(`Error:${res.status}`); //returning Error status
   }
 
+  getUserInfo = (token) => {
+    // Send a GET request to /users/me
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        // Specify an authorization header with an appropriately
+        // formatted value.
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(this._checkResponse);
+  };
+
   //using the GET method to get the items data from the server
   getInitialItem() {
     return fetch(`${this.baseUrl}/items`, {

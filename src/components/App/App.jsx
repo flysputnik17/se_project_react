@@ -11,12 +11,11 @@ import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperature
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import Api from "../../utils/api.jsx";
-import Login from "../Login/Login.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import * as auth from "../../utils/auth.js";
-import Register from "../Register/Register.jsx";
 import { setToken, getToken } from "../../utils/token.js";
-import { getUserInfo } from "../../utils/api.js";
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
 
 const api = new Api({
   baseUrl: "http://localhost:3001",
@@ -52,6 +51,15 @@ function App() {
   */
   const handleAddClick = () => {
     setActiveModal("add-garment");
+  };
+
+  const handleRigsterModal = () => {
+    console.log("test");
+    setActiveModal("signUp");
+  };
+
+  const handleLoginModal = () => {
+    setActiveModal("login");
   };
 
   const closeActiveModal = () => {
@@ -148,7 +156,8 @@ function App() {
     if (!jwt) {
       return;
     }
-    getUserInfo(jwt)
+    api
+      .getUserInfo(jwt)
       .then(({ username, email }) => {
         // If the response is successful, log the user in, save their
         // data to state, and navigate them to /ducks.
@@ -225,11 +234,14 @@ function App() {
           <Header
             weatherData={weatherData}
             handleAddClick={handleAddClick}
+            handleRigsterModal={handleRigsterModal}
+            handleLoginModal={handleLoginModal}
             isLoggedIn={isLoggedIn}
             userData={userData}
           />
+
           <Routes>
-            <Route
+            {/* <Route
               path="/login"
               element={
                 <div className="loginContainer">
@@ -238,24 +250,25 @@ function App() {
               }
             />
             <Route
-              path="/register"
+              path="/signup"
               element={
                 <div className="registerContainer">
                   <Register handleRegistration={handleRegistration} />
                 </div>
               }
-            />
+            /> */}
 
             <Route
               path="/"
               element={
-                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <Main
-                    handleCardClick={handleCardClick}
-                    weatherData={weatherData}
-                    clothingItems={clothingItems}
-                  />
-                </ProtectedRoute>
+                // <ProtectedRoute isLoggedIn={isLoggedIn}>
+
+                // </ProtectedRoute>
+                <Main
+                  handleCardClick={handleCardClick}
+                  weatherData={weatherData}
+                  clothingItems={clothingItems}
+                />
               }
             />
             <Route
@@ -273,7 +286,6 @@ function App() {
               }
             />
           </Routes>
-
           <Footer />
         </div>
         {activeModal === "add-garment" && (
@@ -288,6 +300,20 @@ function App() {
             card={selectedCard}
             onClose={closeActiveModal}
             onDelete={handleDeleteItem}
+          />
+        )}
+
+        {activeModal === "signUp" && (
+          <RegisterModal
+            isOpen={activeModal === "signUp"}
+            handleRegistration={handleRegistration}
+          />
+        )}
+
+        {activeModal === "login" && (
+          <LoginModal
+            isOpen={activeModal === "login"}
+            handleLogin={handleLogin}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>

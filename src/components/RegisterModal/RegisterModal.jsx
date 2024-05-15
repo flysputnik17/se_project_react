@@ -1,11 +1,8 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
-import "./Register.css";
+import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import { Link } from "react-router-dom";
 
-const Register = ({ handleRegistration }) => {
-  // The inputs are controlled via a single piece of state: an object
-  // object called `data`. This lets us avoid writing separate change
-  // handlers for each input.
+const RegisterModal = ({ isOpen, handleRegistration }) => {
   const [data, setData] = useState({
     username: "",
     email: "",
@@ -34,35 +31,47 @@ const Register = ({ handleRegistration }) => {
   };
 
   return (
-    <div className="register">
-      <p className="register__welcome">Please register.</p>
-      <form className="register__form" onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
+    <ModalWithForm isOpen={isOpen} onSubmit={handleSubmit}>
+      <div className="register">
+        <p className="register__welcome">Please register.</p>
+        <label htmlFor="username" className="modal__label">
+          Username:
+        </label>
         <input
           id="username"
           name="username"
+          className="modal__input"
           type="text"
           value={data.username}
           onChange={handleChange}
         />
-        <label htmlFor="email">Email:</label>
+        <label htmlFor="email" className="modal__label">
+          Email:
+        </label>
         <input
           id="email"
           name="email"
+          className="modal__input"
           type="email"
           value={data.email}
           onChange={handleChange}
         />
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password" className="modal__label">
+          Password:
+        </label>
         <input
+          className="modal__input"
           id="password"
           name="password"
           type="password"
           value={data.password}
           onChange={handleChange}
         />
-        <label htmlFor="confirmPassword">Confirm password:</label>
+        <label htmlFor="confirmPassword" className="modal__label">
+          Confirm password:
+        </label>
         <input
+          className="modal__input"
           id="confirmPassword"
           name="confirmPassword"
           type="password"
@@ -70,19 +79,19 @@ const Register = ({ handleRegistration }) => {
           onChange={handleChange}
         />
         <div className="register__button-container">
-          <button type="submit" className="register__link">
+          <button type="submit" className="modal__add-button">
             Sign up
           </button>
         </div>
-      </form>
-      <div className="register__signin">
-        <p>Already a member?</p>
-        <Link to="/login" className="register__login-link">
-          Log in here
-        </Link>
+        <div className="register__signin">
+          <p>Already a member?</p>
+          <Link to="/login" className="register__login-link">
+            Log in here
+          </Link>
+        </div>
       </div>
-    </div>
+    </ModalWithForm>
   );
 };
 
-export default Register;
+export default RegisterModal;

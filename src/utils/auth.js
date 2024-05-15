@@ -1,10 +1,10 @@
 // Specify the BASE_URL for the API.
-export const BASE_URL = "https://api.nomoreparties.co";
+export const BASE_URL = "http://localhost:3001";
 
 // The register function accepts the necessary data as arguments,
 // and sends a POST request to the given endpoint.
 export const register = (username, password, email) => {
-  return fetch(`${BASE_URL}/auth/local/register`, {
+  return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
