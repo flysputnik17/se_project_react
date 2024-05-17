@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import { getWeather, filterWeatherData } from "../../utils/WeatherApi";
@@ -166,10 +166,11 @@ function App() {
 
   useEffect(() => {
     const jwt = getToken();
+    console.log("TOKEN:", jwt);
     if (!jwt) {
       return;
     }
-    api
+    auth
       .getUserInfo(jwt)
       .then(({ username, email }) => {
         // If the response is successful, log the user in, save their
@@ -197,11 +198,13 @@ function App() {
 
   const handleRegistration = ({ email, password, username, avatar }) => {
     auth
-      .register(email, password, username, avatar)
-      .then(() => {
-        console.log("successs");
+      .register({ email, password, username, avatar })
+      .then((data) => {
+        console.log("data", data.username);
+        setIsLoggedIn(true);
+        setUserData({ username, email });
+
         closeActiveModal();
-        handleLoginModal();
       })
       .catch(console.error);
   };
@@ -218,8 +221,10 @@ function App() {
     // before sending a request to the server, because that is what the
     // API is expecting.
     auth
-      .authorize(email, password)
+      .login(email, password)
       .then((data) => {
+        console.log("data.email:", data.email);
+        console.log("data.jwt", data.jwt);
         // Verify that a jwt is included before logging the user in.
         if (data.jwt) {
           setToken(data.jwt);
@@ -227,8 +232,6 @@ function App() {
           setIsLoggedIn(true); //log the user in
         }
         closeActiveModal();
-        navigate("/profile"); //send them to /profile
-        console.log(data);
       })
       .catch(console.error);
   };
@@ -252,9 +255,6 @@ function App() {
             <Route
               path="/"
               element={
-                // <ProtectedRoute isLoggedIn={isLoggedIn}>
-
-                // </ProtectedRoute>
                 <Main
                   handleCardClick={handleCardClick}
                   weatherData={weatherData}
@@ -264,21 +264,16 @@ function App() {
                 />
               }
             />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute isLoggedIn={isLoggedIn}>
-                  <Profile
-                    userData={userData}
-                    handleCardClick={handleCardClick}
-                    handleAddClick={handleAddClick}
-                    clothingItems={clothingItems}
-                    setIsLoggedIn={setIsLoggedIn}
-                  />
-                </ProtectedRoute>
-              }
-            />
           </Routes>
+          <ProtectedRoute path="/profile" isLoggedIn={isLoggedIn}>
+            <Profile
+              userData={userData}
+              handleCardClick={handleCardClick}
+              handleAddClick={handleAddClick}
+              clothingItems={clothingItems}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          </ProtectedRoute>
           <Footer />
         </div>
         {activeModal === "add-garment" && (

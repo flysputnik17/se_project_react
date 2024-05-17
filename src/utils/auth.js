@@ -5,11 +5,7 @@ export const baseUrl = "http://localhost:3001";
 
 // The register function accepts the necessary data as arguments,
 // and sends a POST request to the given endpoint.
-export const register = (email, password, username, avatar) => {
-  console.log("email is:", email);
-  console.log("password is:", password);
-  console.log("username is:", username);
-  console.log("avatar is:", avatar);
+export const register = ({ email, password, username, avatar }) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
@@ -21,7 +17,9 @@ export const register = (email, password, username, avatar) => {
 };
 
 // The authorize function accepts the necessary data as parameters.
-export const authorize = (email, password) => {
+export const login = (email, password) => {
+  console.log("email", email);
+  console.log("password", password);
   // A POST request is sent to /auth/local.
   return fetch(`${baseUrl}/signin`, {
     method: "POST",
@@ -32,5 +30,19 @@ export const authorize = (email, password) => {
     // The parameters are wrapped in an object, converted to a JSON
     // string, and sent in the body of the request.
     body: JSON.stringify({ email, password }),
+  }).then(Api.checkResponse);
+};
+
+export const getUserInfo = (token) => {
+  // Send a GET request to /users/me
+  return fetch(`${baseUrl}/signin`, {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      // Specify an authorization header with an appropriately
+      // formatted value.
+      Authorization: `Bearer ${token}`,
+    },
   }).then(Api.checkResponse);
 };

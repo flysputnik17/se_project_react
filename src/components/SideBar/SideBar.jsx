@@ -8,7 +8,7 @@ function SideBar({ userData, setIsLoggedIn }) {
 
   function signOut() {
     removeToken();
-    navigate("/login");
+    navigate("/");
     setIsLoggedIn(false);
   }
 

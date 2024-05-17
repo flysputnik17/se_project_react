@@ -1,10 +1,11 @@
 import { useState } from "react";
 
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
+import "./LoginModal.css";
 
 const LoginModal = ({ isOpen, handleLogin, handleSignUpButtonClick }) => {
   const [data, setData] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const handleChange = (e) => {
@@ -20,10 +21,13 @@ const LoginModal = ({ isOpen, handleLogin, handleSignUpButtonClick }) => {
     handleLogin(data);
   };
   return (
-    <ModalWithForm buttonText="Log in" isOpen={isOpen} onSubmit={handleSubmit}>
+    <ModalWithForm
+      buttonText="Log in"
+      isOpen={isOpen}
+      onSubmit={handleSubmit}
+      titleText="Log In"
+    >
       <div className="login">
-        <p className="login__welcome">Please Login.</p>
-
         <label htmlFor="email" className="modal__label">
           Email:
         </label>
@@ -52,14 +56,12 @@ const LoginModal = ({ isOpen, handleLogin, handleSignUpButtonClick }) => {
 
         <div className="login__button-container"></div>
         <div className="login__signin">
-          <p>Dont have acount?</p>
-
           <button
             className="register__login-link"
             type="button"
             onClick={handleSignUpButtonClick}
           >
-            Sign up here
+            or Sign Up
           </button>
         </div>
       </div>
