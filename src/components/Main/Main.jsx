@@ -3,8 +3,15 @@ import ItemCard from "../ItemCard/ItemCard.jsx";
 import { CurrentTemperatureUnitContext } from "../../contexts/CurrentTemperatureUnitContext.JSX";
 import "./Main.css";
 import { useContext } from "react";
-function Main({ handleCardClick, weatherData, clothingItems }) {
+function Main({
+  handleCardClick,
+  weatherData,
+  clothingItems,
+  defaultClothingItems,
+  isLoggedIn,
+}) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
+
   return (
     <main>
       <WeatherCard weatherData={weatherData} />
@@ -15,19 +22,39 @@ function Main({ handleCardClick, weatherData, clothingItems }) {
           {currentTemperatureUnit} You may want to wear:
         </p>
         <ul className="cardSection__cardList">
-          {clothingItems
-            .filter((item) => {
-              return item.weather === weatherData.type;
-            })
-            .map((item) => {
-              return (
-                <ItemCard
-                  key={item._id}
-                  item={item}
-                  onCardClick={handleCardClick}
-                />
-              );
-            })}
+          {isLoggedIn ? (
+            <>
+              {clothingItems
+                .filter((item) => {
+                  return item.weather === weatherData.type;
+                })
+                .map((item) => {
+                  return (
+                    <ItemCard
+                      key={item._id}
+                      item={item}
+                      onCardClick={handleCardClick}
+                    />
+                  );
+                })}
+            </>
+          ) : (
+            <>
+              {defaultClothingItems
+                .filter((item) => {
+                  return item.weather === weatherData.type;
+                })
+                .map((item) => {
+                  return (
+                    <ItemCard
+                      key={item._id}
+                      item={item}
+                      onCardClick={handleCardClick}
+                    />
+                  );
+                })}
+            </>
+          )}
         </ul>
       </section>
     </main>

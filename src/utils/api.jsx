@@ -4,7 +4,7 @@ export default class Api {
     this.headers = headers;
   }
 
-  _checkResponse(res) {
+  checkResponse(res) {
     if (res.ok) {
       return res.json(); //returning the JSON objet in case the res is ok
     }
@@ -23,7 +23,7 @@ export default class Api {
         // formatted value.
         Authorization: `Bearer ${token}`,
       },
-    }).then(this._checkResponse);
+    }).then(this.checkResponse);
   };
 
   //using the GET method to get the items data from the server
@@ -31,7 +31,7 @@ export default class Api {
     return fetch(`${this.baseUrl}/items`, {
       method: "GET",
       headers: this.headers,
-    }).then(this._checkResponse);
+    }).then(this.checkResponse);
   }
 
   addNewItem({ name, imageUrl, weather }) {
@@ -43,13 +43,13 @@ export default class Api {
         imageUrl,
         weather,
       }),
-    }).then(this._checkResponse);
+    }).then(this.checkResponse);
   }
 
   deleteItem(id) {
     return fetch(`${this.baseUrl}/items/${id}`, {
       method: "DELETE",
       headers: this.headers,
-    }).then(this._checkResponse);
+    }).then(this.checkResponse);
   }
 }

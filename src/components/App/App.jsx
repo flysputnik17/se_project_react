@@ -1,9 +1,13 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import { getWeather, filterWeatherData } from "../../utils/WeatherApi";
-import { coordinates, APIkey } from "../../utils/constants.jsx";
+import {
+  coordinates,
+  APIkey,
+  defaultClothingItems,
+} from "../../utils/constants.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
@@ -54,7 +58,6 @@ function App() {
   };
 
   const handleRigsterModal = () => {
-    console.log("test");
     setActiveModal("signUp");
   };
 
@@ -97,6 +100,16 @@ function App() {
       .catch((err) => {
         console.error(`${err} Failed in handleDeleteItem`);
       });
+  };
+
+  const handleLoginButtonClick = () => {
+    closeActiveModal();
+    handleLoginModal();
+  };
+
+  const handleSignUpButtonClick = () => {
+    closeActiveModal();
+    handleRigsterModal();
   };
 
   /*
@@ -182,27 +195,21 @@ function App() {
 
   const navigate = useNavigate();
 
-  const handleRegistration = ({
-    username,
-    email,
-    password,
-    confirmPassword,
-  }) => {
-    if (password === confirmPassword) {
-      auth
-        .register(username, password, email)
-        .then(() => {
-          console.log("successs");
-          navigate("/login");
-        })
-        .catch(console.error);
-    }
+  const handleRegistration = ({ email, password, username, avatar }) => {
+    auth
+      .register(email, password, username, avatar)
+      .then(() => {
+        console.log("successs");
+        closeActiveModal();
+        handleLoginModal();
+      })
+      .catch(console.error);
   };
 
   // handleLogin accepts one parameter: an object with two properties.
-  const handleLogin = ({ username, password }) => {
+  const handleLogin = ({ email, password }) => {
     // If username or password empty, return without sending a request.
-    if (!username || !password) {
+    if (!email || !password) {
       return;
     }
 
@@ -211,15 +218,16 @@ function App() {
     // before sending a request to the server, because that is what the
     // API is expecting.
     auth
-      .authorize(username, password)
+      .authorize(email, password)
       .then((data) => {
         // Verify that a jwt is included before logging the user in.
         if (data.jwt) {
           setToken(data.jwt);
           setUserData(data.user); //save user's data to state
           setIsLoggedIn(true); //log the user in
-          navigate("/"); //send them to /profile
         }
+        closeActiveModal();
+        navigate("/profile"); //send them to /profile
         console.log(data);
       })
       .catch(console.error);
@@ -241,23 +249,6 @@ function App() {
           />
 
           <Routes>
-            {/* <Route
-              path="/login"
-              element={
-                <div className="loginContainer">
-                  <Login handleLogin={handleLogin} />
-                </div>
-              }
-            />
-            <Route
-              path="/signup"
-              element={
-                <div className="registerContainer">
-                  <Register handleRegistration={handleRegistration} />
-                </div>
-              }
-            /> */}
-
             <Route
               path="/"
               element={
@@ -268,6 +259,8 @@ function App() {
                   handleCardClick={handleCardClick}
                   weatherData={weatherData}
                   clothingItems={clothingItems}
+                  defaultClothingItems={defaultClothingItems}
+                  isLoggedIn={isLoggedIn}
                 />
               }
             />
@@ -307,6 +300,7 @@ function App() {
           <RegisterModal
             isOpen={activeModal === "signUp"}
             handleRegistration={handleRegistration}
+            handleLoginButtonClick={handleLoginButtonClick}
           />
         )}
 
@@ -314,6 +308,7 @@ function App() {
           <LoginModal
             isOpen={activeModal === "login"}
             handleLogin={handleLogin}
+            handleSignUpButtonClick={handleSignUpButtonClick}
           />
         )}
       </CurrentTemperatureUnitContext.Provider>

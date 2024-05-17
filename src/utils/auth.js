@@ -1,25 +1,29 @@
 // Specify the BASE_URL for the API.
-export const BASE_URL = "http://localhost:3001";
+import Api from "./api.jsx";
+
+export const baseUrl = "http://localhost:3001";
 
 // The register function accepts the necessary data as arguments,
 // and sends a POST request to the given endpoint.
-export const register = (username, password, email) => {
-  return fetch(`${BASE_URL}/signup`, {
+export const register = (email, password, username, avatar) => {
+  console.log("email is:", email);
+  console.log("password is:", password);
+  console.log("username is:", username);
+  console.log("avatar is:", avatar);
+  return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ username, password, email }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+    body: JSON.stringify({ email, password, username, avatar }),
+  }).then(Api.checkResponse);
 };
 
 // The authorize function accepts the necessary data as parameters.
-export const authorize = (identifier, password) => {
+export const authorize = (email, password) => {
   // A POST request is sent to /auth/local.
-  return fetch(`${BASE_URL}/auth/local`, {
+  return fetch(`${baseUrl}/signin`, {
     method: "POST",
     headers: {
       Accept: "application/json",
@@ -27,8 +31,6 @@ export const authorize = (identifier, password) => {
     },
     // The parameters are wrapped in an object, converted to a JSON
     // string, and sent in the body of the request.
-    body: JSON.stringify({ identifier, password }),
-  }).then((res) => {
-    return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
-  });
+    body: JSON.stringify({ email, password }),
+  }).then(Api.checkResponse);
 };

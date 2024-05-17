@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom";
 import { useState } from "react";
-import "./Login.css";
+
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-function LoginModal({ isOpen, handleLogin }) {
+const LoginModal = ({ isOpen, handleLogin, handleSignUpButtonClick }) => {
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -21,20 +20,21 @@ function LoginModal({ isOpen, handleLogin }) {
     handleLogin(data);
   };
   return (
-    <ModalWithForm isOpen={isOpen} onSubmit={handleSubmit}>
+    <ModalWithForm buttonText="Log in" isOpen={isOpen} onSubmit={handleSubmit}>
       <div className="login">
         <p className="login__welcome">Please Login.</p>
 
-        <label htmlFor="username" className="modal__label">
-          Username:
+        <label htmlFor="email" className="modal__label">
+          Email:
         </label>
         <input
-          id="username"
+          id="email"
           className="modal__input"
-          name="username"
-          type="text"
-          value={data.username}
+          name="email"
+          type="email"
+          value={data.email}
           onChange={handleChange}
+          required
         />
 
         <label htmlFor="password" className="modal__label">
@@ -44,25 +44,27 @@ function LoginModal({ isOpen, handleLogin }) {
           id="password"
           className="modal__input"
           name="password"
-          type="password"
+          type="text"
           value={data.password}
           onChange={handleChange}
+          required
         />
 
-        <div className="login__button-container">
-          <button type="submit" className="modal__add-button">
-            Log in
-          </button>
-        </div>
+        <div className="login__button-container"></div>
         <div className="login__signin">
           <p>Dont have acount?</p>
-          <Link to="/register" className="register__login-link">
+
+          <button
+            className="register__login-link"
+            type="button"
+            onClick={handleSignUpButtonClick}
+          >
             Sign up here
-          </Link>
+          </button>
         </div>
       </div>
     </ModalWithForm>
   );
-}
+};
 
 export default LoginModal;

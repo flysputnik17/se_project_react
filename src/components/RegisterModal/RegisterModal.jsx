@@ -1,13 +1,18 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import { Link } from "react-router-dom";
 
-const RegisterModal = ({ isOpen, handleRegistration }) => {
+import "./RegisterModal.css";
+
+const RegisterModal = ({
+  isOpen,
+  handleRegistration,
+  handleLoginButtonClick,
+}) => {
   const [data, setData] = useState({
-    username: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    username: "",
+    avatar: "",
   });
 
   // This function fires whenever an input is changed, and it updates
@@ -31,65 +36,67 @@ const RegisterModal = ({ isOpen, handleRegistration }) => {
   };
 
   return (
-    <ModalWithForm isOpen={isOpen} onSubmit={handleSubmit}>
-      <div className="register">
-        <p className="register__welcome">Please register.</p>
-        <label htmlFor="username" className="modal__label">
-          Username:
-        </label>
+    <ModalWithForm buttonText="Sign Up" isOpen={isOpen} onSubmit={handleSubmit}>
+      <p className="modal__title">Sign Up</p>
+      <label htmlFor="Email" className="modal__label">
+        Email*
+        <input
+          type="email"
+          name="email"
+          className="modal__input"
+          id="email"
+          placeholder="Email"
+          value={data.email}
+          onChange={handleChange}
+          required
+        />
+      </label>
+      <label htmlFor="password" className="modal__label">
+        Password*
+        <input
+          className="modal__input"
+          id="password"
+          name="password"
+          type="text"
+          value={data.password}
+          onChange={handleChange}
+          placeholder="Password"
+          required
+        />
+      </label>
+      <label htmlFor="Name" className="modal__label">
+        Name*
         <input
           id="username"
           name="username"
           className="modal__input"
           type="text"
+          placeholder="Name"
           value={data.username}
           onChange={handleChange}
+          required
         />
-        <label htmlFor="email" className="modal__label">
-          Email:
-        </label>
+      </label>
+      <label htmlFor="Avatar URL *" className="modal__label">
+        Avatar URL *
         <input
-          id="email"
-          name="email"
+          id="avatar"
+          name="avatar"
           className="modal__input"
-          type="email"
-          value={data.email}
+          type="url"
+          placeholder="Avatar URL "
+          value={data.avatar}
           onChange={handleChange}
+          required
         />
-        <label htmlFor="password" className="modal__label">
-          Password:
-        </label>
-        <input
-          className="modal__input"
-          id="password"
-          name="password"
-          type="password"
-          value={data.password}
-          onChange={handleChange}
-        />
-        <label htmlFor="confirmPassword" className="modal__label">
-          Confirm password:
-        </label>
-        <input
-          className="modal__input"
-          id="confirmPassword"
-          name="confirmPassword"
-          type="password"
-          value={data.confirmPassword}
-          onChange={handleChange}
-        />
-        <div className="register__button-container">
-          <button type="submit" className="modal__add-button">
-            Sign up
-          </button>
-        </div>
-        <div className="register__signin">
-          <p>Already a member?</p>
-          <Link to="/login" className="register__login-link">
-            Log in here
-          </Link>
-        </div>
-      </div>
+      </label>
+      <button
+        className="register__login-link"
+        type="button"
+        onClick={handleLoginButtonClick}
+      >
+        or Log In
+      </button>
     </ModalWithForm>
   );
 };
