@@ -16,12 +16,17 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import Api from "../../utils/api.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
-import * as auth from "../../utils/auth.js";
+import Auth from "../../utils/auth.js";
 import { setToken, getToken } from "../../utils/token.js";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 
 const api = new Api({
+  baseUrl: "http://localhost:3001",
+  headers: { "Content-Type": "application/json" },
+});
+
+const auth = new Auth({
   baseUrl: "http://localhost:3001",
   headers: { "Content-Type": "application/json" },
 });
