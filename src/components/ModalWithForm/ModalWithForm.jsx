@@ -3,7 +3,7 @@ import closeButton from "../../assets/closeButton.svg";
 
 function ModalWithForm({
   children,
-  buttonText,
+
   titleText,
   onClose,
   isOpen,
@@ -18,9 +18,6 @@ function ModalWithForm({
         </button>
         <form onSubmit={onSubmit} className="modal__form">
           {children}
-          <button className="modal__add-button" type="submit">
-            {buttonText}
-          </button>
         </form>
       </div>
     </div>

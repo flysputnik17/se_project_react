@@ -24,7 +24,6 @@
   padding: 28px 28px 36px;
   max-width: 496px;
   max-height: 436px;
-  height: 100%;
   width: 100%;
   box-sizing: border-box;
   border-radius: 20px;
@@ -121,4 +120,56 @@
   padding: 0;
   border-color: white;
   cursor: pointer;
+}
+
+.Login__button {
+  color: #ffffff;
+  width: 73px;
+  height: 36px;
+  background-color: #0000004d;
+  border: none;
+  margin-top: 15px;
+}
+
+.Login__button:hover {
+  background-color: black;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.Or-Sign-Up__button {
+  width: 73px;
+  height: 20px;
+  border: none;
+  color: #00000080;
+  cursor: pointer;
+  margin-left: 100px;
+  top: auto;
+  margin-top: -22px;
+}
+
+.SignUp__button {
+  background-color: #0000004d;
+  color: #ffffff;
+  width: 86px;
+  height: 36px;
+
+  border: none;
+  margin-top: 15px;
+}
+
+.SignUp__button:hover {
+  background-color: black;
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.Or-Login__button {
+  width: 73px;
+  height: 20px;
+  border: none;
+  color: #00000080;
+  cursor: pointer;
+  margin-left: 100px;
+  margin-top: -22px;
 }

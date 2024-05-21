@@ -1,8 +1,6 @@
 import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
-import "./RegisterModal.css";
-
 const RegisterModal = ({
   isOpen,
   handleRegistration,
@@ -32,12 +30,12 @@ const RegisterModal = ({
   // submission.
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(data);
     handleRegistration(data);
   };
 
   return (
-    <ModalWithForm buttonText="Sign Up" isOpen={isOpen} onSubmit={handleSubmit}>
-      <p className="modal__title">Sign Up</p>
+    <ModalWithForm titleText="Sign Up" isOpen={isOpen} onSubmit={handleSubmit}>
       <label htmlFor="Email" className="modal__label">
         Email*
         <input
@@ -90,9 +88,12 @@ const RegisterModal = ({
           required
         />
       </label>
+      <button type="submit" className="SignUp__button">
+        Sign up
+      </button>
       <button
-        className="register__login-link"
-        type="button"
+        type="submit"
+        className="Or-Login__button"
         onClick={handleLoginButtonClick}
       >
         or Log In

@@ -1,4 +1,4 @@
-const JWT_SECRET = "jwt";
+const JWT_SECRET = "token";
 
 // setToken accepts the token as an argument, and adds it to
 // with localStorage the key JWT_SECRET.

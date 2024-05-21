@@ -1,6 +1,6 @@
 export default class Auth {
-  constructor({ baseUrl, headers }) {
-    this.baseUrl = baseUrl;
+  constructor({ headers }) {
+    this.baseUrl = "http://localhost:3001";
     this.headers = headers;
   }
 
@@ -13,11 +13,6 @@ export default class Auth {
   }
 
   register({ email, password, username, avatar }) {
-    console.log("email is:", email);
-    console.log("password is:", password);
-    console.log("username is:", username);
-    console.log("avatar is:", avatar);
-
     return fetch(`${this.baseUrl}/signup`, {
       method: "POST",
       headers: this.headers,
@@ -25,9 +20,7 @@ export default class Auth {
     }).then(this.checkResponse);
   }
 
-  login(email, password) {
-    console.log("email", email);
-    console.log("password", password);
+  login({ email, password }) {
     // A POST request is sent to /auth/local.
     return fetch(`${this.baseUrl}/signin`, {
       method: "POST",
@@ -40,13 +33,10 @@ export default class Auth {
 
   getUserInfo(token) {
     // Send a GET request to /users/me
-    return fetch(`${this.baseUrl}/signin`, {
+    return fetch(`${this.baseUrl}/users/me`, {
       method: "GET",
       headers: {
-        Accept: "application/json",
         "Content-Type": "application/json",
-        // Specify an authorization header with an appropriately
-        // formatted value.
         Authorization: `Bearer ${token}`,
       },
     }).then(this.checkResponse);

@@ -26,10 +26,7 @@ const api = new Api({
   headers: { "Content-Type": "application/json" },
 });
 
-const auth = new Auth({
-  baseUrl: "http://localhost:3001",
-  headers: { "Content-Type": "application/json" },
-});
+const auth = new Auth({ headers: { "Content-Type": "application/json" } });
 
 function App() {
   /*the weatherData is an object that hase type,temp and city property
@@ -171,7 +168,6 @@ function App() {
 
   useEffect(() => {
     const jwt = getToken();
-    console.log("TOKEN:", jwt);
     if (!jwt) {
       return;
     }
@@ -197,17 +193,27 @@ function App() {
 
   //setting the user login status to be false by default for now
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({ username: "", email: "" });
+  const [userData, setUserData] = useState({
+    username: "",
+    avatar: "",
+    _id: "",
+    token: "",
+  });
 
   const navigate = useNavigate();
 
   const handleRegistration = ({ email, password, username, avatar }) => {
     auth
       .register({ email, password, username, avatar })
-      .then((data) => {
-        console.log("data", data.username);
+      .then((res) => {
         setIsLoggedIn(true);
-        setUserData({ username, email });
+        setUserData({
+          username: res.username,
+          avatar: res.avatar,
+          _id: res._id,
+        });
+
+        navigate("/profile");
 
         closeActiveModal();
       })
@@ -226,16 +232,18 @@ function App() {
     // before sending a request to the server, because that is what the
     // API is expecting.
     auth
-      .login(email, password)
+      .login({ email, password })
       .then((data) => {
-        console.log("data.email:", data.email);
-        console.log("data.jwt", data.jwt);
         // Verify that a jwt is included before logging the user in.
-        if (data.jwt) {
-          setToken(data.jwt);
-          setUserData(data.user); //save user's data to state
-          setIsLoggedIn(true); //log the user in
+        if (data) {
+          setToken(data);
+          auth.getUserInfo(data).then((user) => {
+            setUserData(user); //save user's data to state
+            setIsLoggedIn(true); //log the user in
+            navigate("/profile");
+          });
         }
+
         closeActiveModal();
       })
       .catch(console.error);
@@ -301,6 +309,7 @@ function App() {
             isOpen={activeModal === "signUp"}
             handleRegistration={handleRegistration}
             handleLoginButtonClick={handleLoginButtonClick}
+            onClose={closeActiveModal}
           />
         )}
 

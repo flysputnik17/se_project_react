@@ -28,6 +28,6 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-`npm run dev` — to launch the server with the hot reload feature
-
-`json-server --watch db.json --id _id --port 3001` — to launch the server with the DB
+`npm run dev` — to launch the frontend with the hot reload feature on the se_project_react
+`npm run start` — to launch the server with the hot reload feature on the se_project_express
+run "C:\Program Files\MongoDB\Server\7.0\bin\mongod.exe" --dbpath="c:\data\db" on se_project_express
