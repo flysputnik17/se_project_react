@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate, Navigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import { getWeather, filterWeatherData } from "../../utils/WeatherApi";
@@ -17,7 +17,6 @@ import Profile from "../Profile/Profile.jsx";
 import Api from "../../utils/api.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import Auth from "../../utils/auth.js";
-import { setToken, getToken } from "../../utils/token.js";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 
@@ -25,16 +24,9 @@ const api = new Api({
   baseUrl: "http://localhost:3001",
   headers: { "Content-Type": "application/json" },
 });
-
 const auth = new Auth({ headers: { "Content-Type": "application/json" } });
 
 function App() {
-  /*the weatherData is an object that hase type,temp and city property
-  i initialize its property in the begining with some values
-  the setWeatherData is a callback function that will be called to change the initial 
-  values of the weatherData property 
-   
-   */
   const [weatherData, setWeatherData] = useState(
     {
       type: "",
@@ -51,10 +43,13 @@ function App() {
   const [selectedCard, setSelectCard] = useState({});
   const [clothingItems, setClothingItems] = useState([]);
 
-  /*
-  the handleAddClick function is passed to the Header component so when the button 
-  in the Header component is clicked the function will be called 
-  */
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({
+    username: "",
+    avatar: "",
+    _id: "",
+  });
+
   const handleAddClick = () => {
     setActiveModal("add-garment");
   };
@@ -114,15 +109,6 @@ function App() {
     handleRigsterModal();
   };
 
-  /*
-  this useEffect is calling the GetWeather function (an API one) we passing to it 
-  the coordinates and APIkey as an argument in the .then we creating a new var 
-  filterData to store the data we get from calling filterWeatherData function (an API functino)
-  to this gunction we passing the API result we got from the GetWeather func called data
-  and then the filterData that is holding the name of the city we passing it to the 
-  setWeatherData the call back func of the weatherData hook and by that we geting the 
-  name of the city 
-  */
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -132,7 +118,6 @@ function App() {
       .catch(console.error);
   }, []);
 
-  //useEffect to handle the Escape button cllick to close a modal
   useEffect(() => {
     if (!activeModal) return;
     const handleExit = (evt) => {
@@ -144,7 +129,6 @@ function App() {
     return () => document.removeEventListener("keydown", handleExit);
   }, [activeModal]);
 
-  //useEffect to handle the mouse click outside of the modal to be closed
   useEffect(() => {
     if (!activeModal) return;
     const handleOverly = (evt) => {
@@ -156,7 +140,6 @@ function App() {
     return () => document.removeEventListener("mousedown", handleOverly);
   }, [activeModal]);
 
-  //useEffect for rendering the initial items
   useEffect(() => {
     api
       .getInitialItem()
@@ -167,21 +150,20 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const jwt = getToken();
+    const jwt = localStorage.getItem("jwt");
+    console.log("token test: ", jwt);
     if (!jwt) {
       return;
     }
     auth
       .getUserInfo(jwt)
       .then(({ username, email }) => {
-        // If the response is successful, log the user in, save their
-        // data to state, and navigate them to /ducks.
         setIsLoggedIn(true);
         setUserData({ username, email });
-        navigate("/");
+        navigate("/profile");
       })
       .catch(console.error);
-  }, []);
+  }, [isLoggedIn]);
 
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
@@ -190,15 +172,6 @@ function App() {
       ? setCurrentTemperatureUnit("C")
       : setCurrentTemperatureUnit("F");
   };
-
-  //setting the user login status to be false by default for now
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userData, setUserData] = useState({
-    username: "",
-    avatar: "",
-    _id: "",
-    token: "",
-  });
 
   const navigate = useNavigate();
 
@@ -212,7 +185,6 @@ function App() {
           avatar: res.avatar,
           _id: res._id,
         });
-
         navigate("/profile");
 
         closeActiveModal();
@@ -220,31 +192,36 @@ function App() {
       .catch(console.error);
   };
 
-  // handleLogin accepts one parameter: an object with two properties.
+  const checkloggedIn = () => {
+    const jwt = localStorage.getItem("jwt");
+    return auth
+      .getUserInfo(jwt)
+      .then((res) => {
+        setIsLoggedIn(true);
+        setUserData(res);
+      })
+      .catch((err) => {
+        console.error("error in checkloggedIn", err);
+      });
+  };
+
+  const signOut = () => {
+    localStorage.removeItem("jwt");
+    setIsLoggedIn(false);
+    setUserData({});
+    closeActiveModal();
+  };
+
   const handleLogin = ({ email, password }) => {
-    // If username or password empty, return without sending a request.
     if (!email || !password) {
       return;
     }
-
-    // We pass the username and password as positional arguments. The
-    // authorize function is set up to rename `username` to `identifier`
-    // before sending a request to the server, because that is what the
-    // API is expecting.
     auth
       .login({ email, password })
-      .then((data) => {
-        // Verify that a jwt is included before logging the user in.
-        if (data) {
-          setToken(data);
-          auth.getUserInfo(data).then((user) => {
-            setUserData(user); //save user's data to state
-            setIsLoggedIn(true); //log the user in
-            navigate("/profile");
-          });
-        }
-
+      .then((res) => {
+        localStorage.setItem("jwt", res.token);
         closeActiveModal();
+        return checkloggedIn();
       })
       .catch(console.error);
   };
@@ -285,6 +262,7 @@ function App() {
               handleAddClick={handleAddClick}
               clothingItems={clothingItems}
               setIsLoggedIn={setIsLoggedIn}
+              signOut={signOut}
             />
           </ProtectedRoute>
           <Footer />

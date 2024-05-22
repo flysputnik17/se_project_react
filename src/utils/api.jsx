@@ -21,9 +21,13 @@ export default class Api {
   }
 
   addNewItem({ name, imageUrl, weather }) {
+    const jwt = localStorage.getItem("jwt");
     return fetch(`${this.baseUrl}/items`, {
       method: "POST",
-      headers: this.headers,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
       body: JSON.stringify({
         name,
         imageUrl,
@@ -33,9 +37,13 @@ export default class Api {
   }
 
   deleteItem(id) {
+    const jwt = localStorage.getItem("jwt");
     return fetch(`${this.baseUrl}/items/${id}`, {
       method: "DELETE",
-      headers: this.headers,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
     }).then(this.checkResponse);
   }
 }

@@ -8,11 +8,17 @@ function Profile({
   handleAddClick,
   clothingItems,
   userData,
+  signOut,
+
   setIsLoggedIn,
 }) {
   return (
     <div className="profile">
-      <SideBar userData={userData} setIsLoggedIn={setIsLoggedIn} />
+      <SideBar
+        userData={userData}
+        setIsLoggedIn={setIsLoggedIn}
+        signOut={signOut}
+      />
       <ClothesSection
         onCardClick={handleCardClick}
         onClick={handleAddClick}

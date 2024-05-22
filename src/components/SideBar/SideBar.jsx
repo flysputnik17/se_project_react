@@ -1,17 +1,7 @@
 import "./SideBar.css";
 import avatar from "../../assets/avatar.svg";
-import { NavLink, useNavigate } from "react-router-dom";
-import { removeToken } from "../../utils/token";
 
-function SideBar({ userData, setIsLoggedIn }) {
-  const navigate = useNavigate();
-
-  function signOut() {
-    removeToken();
-    navigate("/");
-    setIsLoggedIn(false);
-  }
-
+function SideBar({ userData, signOut }) {
   return (
     <div className="profile__userSection">
       <img className="profile__userSection-avatar" src={avatar} alt="avatar" />

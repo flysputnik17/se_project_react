@@ -100,6 +100,9 @@ const AddItemModal = ({ isOpen, onAddItem }) => {
             onChange={handleWeatherChange}
           />
         </label>
+        <button type="submit" className="AddGarment">
+          Add garment
+        </button>
       </fieldset>
     </ModalWithForm>
   );

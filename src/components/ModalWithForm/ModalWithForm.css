@@ -173,3 +173,17 @@
   margin-left: 100px;
   margin-top: -22px;
 }
+
+.AddGarment {
+  color: #ffffff;
+  width: 124px;
+  height: 36px;
+  background-color: #0000004d;
+  border: none;
+  margin-top: 32px;
+}
+.AddGarment:hover {
+  background-color: black;
+  cursor: pointer;
+  opacity: 0.8;
+}

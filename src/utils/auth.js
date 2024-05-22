@@ -37,7 +37,7 @@ export default class Auth {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        authorization: `Bearer ${token}`,
       },
     }).then(this.checkResponse);
   }

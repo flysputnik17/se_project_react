@@ -36,7 +36,7 @@ function Header({
               </button>
 
               <Link to="/profile" className="header__user-title">
-                {userData.username}
+                <h1>{userData.username}</h1>
               </Link>
               <img
                 className="header__user-avatar"
