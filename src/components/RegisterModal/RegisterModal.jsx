@@ -6,22 +6,24 @@ const RegisterModal = ({
   handleRegistration,
   handleLoginButtonClick,
 }) => {
-  const [data, setData] = useState({
-    email: "",
-    password: "",
-    username: "",
-    avatar: "",
-  });
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  const [avatar, setAvatar] = useState("");
 
-  // This function fires whenever an input is changed, and it updates
-  // the value of the changed input. Note that the keys of this
-  // object match the name attributes of the corresponding inputs.
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handleAvatarChange = (e) => {
+    setAvatar(e.target.value);
   };
 
   // Declare a submission handler function. This function just needs
@@ -30,8 +32,7 @@ const RegisterModal = ({
   // submission.
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(data);
-    handleRegistration(data);
+    handleRegistration({ email, password, username, avatar });
   };
 
   return (
@@ -44,8 +45,8 @@ const RegisterModal = ({
           className="modal__input"
           id="email"
           placeholder="Email"
-          value={data.email}
-          onChange={handleChange}
+          value={email}
+          onChange={handleEmailChange}
           required
         />
       </label>
@@ -56,8 +57,8 @@ const RegisterModal = ({
           id="password"
           name="password"
           type="text"
-          value={data.password}
-          onChange={handleChange}
+          value={password}
+          onChange={handlePasswordChange}
           placeholder="Password"
           required
         />
@@ -70,8 +71,10 @@ const RegisterModal = ({
           className="modal__input"
           type="text"
           placeholder="Name"
-          value={data.username}
-          onChange={handleChange}
+          minLength="1"
+          maxLength="30"
+          value={username}
+          onChange={handleUsernameChange}
           required
         />
       </label>
@@ -83,8 +86,9 @@ const RegisterModal = ({
           className="modal__input"
           type="url"
           placeholder="Avatar URL "
-          value={data.avatar}
-          onChange={handleChange}
+          value={avatar}
+          onChange={handleAvatarChange}
+          minLength={1}
           required
         />
       </label>

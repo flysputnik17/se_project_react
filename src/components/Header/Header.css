@@ -15,6 +15,28 @@
   align-items: center;
   width: 100%;
 }
+.header__span {
+  color: #fff;
+  text-align: center;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.header__span-container {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 50%;
+}
 
 .header__app-logo {
   width: 89px;

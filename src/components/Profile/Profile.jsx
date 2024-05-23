@@ -1,24 +1,11 @@
 import "./Profile.css";
-
 import SideBar from "../SideBar/SideBar";
 import ClothesSection from "../ClothesSection/ClothesSection";
 
-function Profile({
-  handleCardClick,
-  handleAddClick,
-  clothingItems,
-  userData,
-  signOut,
-
-  setIsLoggedIn,
-}) {
+function Profile({ handleCardClick, handleAddClick, clothingItems, signOut }) {
   return (
     <div className="profile">
-      <SideBar
-        userData={userData}
-        setIsLoggedIn={setIsLoggedIn}
-        signOut={signOut}
-      />
+      <SideBar signOut={signOut} />
       <ClothesSection
         onCardClick={handleCardClick}
         onClick={handleAddClick}
