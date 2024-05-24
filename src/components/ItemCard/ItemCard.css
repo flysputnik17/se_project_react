@@ -48,3 +48,18 @@
   max-width: 325px;
   max-height: 328px;
 }
+
+.card__like-button {
+  margin-left: 20px;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: none;
+  background: transparent url(../../assets/like.png) no-repeat center;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.card__like-button_liked {
+  background: url(../../assets/like.png) no-repeat center;
+}

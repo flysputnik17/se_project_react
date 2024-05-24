@@ -46,4 +46,26 @@ export default class Api {
       },
     }).then(this.checkResponse);
   }
+
+  addCardLike(cardId) {
+    const jwt = localStorage.getItem("jwt");
+    return fetch(`${this.baseUrl}/items/${cardId}/likes`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
+    }).then(this.checkResponse);
+  }
+
+  removeCardLike(cardId) {
+    const jwt = localStorage.getItem("jwt");
+    return fetch(`${this.baseUrl}/items/${cardId}/likes`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
+    }).then(this.checkResponse);
+  }
 }

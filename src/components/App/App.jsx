@@ -52,6 +52,8 @@ function App() {
     token: "",
   });
 
+  const [isLiked, setIsLiked] = useState(false);
+
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const navigate = useNavigate();
 
@@ -150,6 +152,30 @@ function App() {
       .catch((err) => {
         console.error(`${err} Failed in handleDeleteItem`);
       });
+  };
+
+  const handleCardLike = (id, isLiked) => {
+    if (!isLiked) {
+      api
+        .addCardLike(id)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+          setIsLiked(true);
+        })
+        .catch((err) => console.log(err));
+    } else {
+      api
+        .removeCardLike(id)
+        .then((updatedCard) => {
+          setClothingItems((cards) =>
+            cards.map((item) => (item._id === id ? updatedCard : item))
+          );
+          setIsLiked(false);
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   const handleLoginButtonClick = () => {
@@ -261,6 +287,7 @@ function App() {
                     clothingItems={clothingItems}
                     defaultClothingItems={defaultClothingItems}
                     isLoggedIn={isLoggedIn}
+                    handleCardLike={handleCardLike}
                   />
                 }
               />
@@ -279,7 +306,7 @@ function App() {
                 }
               ></Route>
 
-              {/* <Route
+              <Route
                 path="*"
                 element={
                   isLoggedIn ? (
@@ -288,7 +315,7 @@ function App() {
                     <Navigate to="/" replace />
                   )
                 }
-              /> */}
+              />
             </Routes>
 
             <Footer />
@@ -297,6 +324,7 @@ function App() {
             <AddItemModal
               isOpen={activeModal === "add-garment"}
               onAddItem={handleAddItemSubmit}
+              onClose={closeActiveModal}
             />
           )}
           {activeModal === "preview" && (
@@ -322,12 +350,14 @@ function App() {
               isOpen={activeModal === "login"}
               handleLogin={handleLogin}
               handleSignUpButtonClick={handleSignUpButtonClick}
+              onClose={closeActiveModal}
             />
           )}
           {activeModal === "edit" && (
             <EditProfileModal
               isOpen={activeModal === "edit"}
               handleEdit={handleEdit}
+              onClose={closeActiveModal}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>

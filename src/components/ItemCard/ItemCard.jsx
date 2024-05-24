@@ -1,14 +1,22 @@
 import "./ItemCard.css";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import { useContext } from "react";
 
-/*
-ItemCard get the onCardClick and item as parameters form the Main.jsx
-and return a Li component 
-*/
-
-function ItemCard({ onCardClick, item }) {
+function ItemCard({ onCardClick, item, handleCardLike }) {
+  const currentUser = useContext(CurrentUserContext);
+  const id = item._id;
+  const isLiked = item.likes.some((user) => user === currentUser?._id);
+  const likeButtonClass = `card__like-button ${
+    isLiked ? "card__like-button_liked" : ""
+  }`;
   const handleCardClick = () => {
     onCardClick(item);
   };
+
+  const handleLike = () => {
+    handleCardLike(id, isLiked);
+  };
+
   return (
     <li className="cardSection__card">
       <h2 className="cardSection__card-title">{item.name}</h2>
@@ -20,6 +28,11 @@ function ItemCard({ onCardClick, item }) {
           onCardClick(handleCardClick);
         }}
       ></img>
+      <button
+        type="button"
+        className={likeButtonClass}
+        onClick={handleLike}
+      ></button>
     </li>
   );
 }

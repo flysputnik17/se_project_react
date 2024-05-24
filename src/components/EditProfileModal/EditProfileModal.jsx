@@ -3,7 +3,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-const EditProfileModal = ({ isOpen, handleEdit }) => {
+const EditProfileModal = ({ isOpen, handleEdit, onClose }) => {
   const currentUser = useContext(CurrentUserContext);
   const [data, setData] = useState({
     username: "",
@@ -30,6 +30,7 @@ const EditProfileModal = ({ isOpen, handleEdit }) => {
       titleText="Change profile data"
       className="login"
       buttonText="Save changes"
+      onClose={onClose}
     >
       <label htmlFor="Name *" className="modal__label">
         Name *

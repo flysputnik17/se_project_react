@@ -2,7 +2,7 @@ import { useState } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 
 // onAddItem refers to handleAddItemSubmit, which is declared in App.js
-const AddItemModal = ({ isOpen, onAddItem }) => {
+const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
   // declare state for each input field
   const [name, setName] = useState("");
   const [imageUrl, setImage] = useState("");
@@ -36,6 +36,7 @@ const AddItemModal = ({ isOpen, onAddItem }) => {
       titleText="New garment"
       isOpen={isOpen}
       onSubmit={handleSubmit}
+      onClose={onClose}
     >
       <label htmlFor="name" className="modal__label">
         Name
