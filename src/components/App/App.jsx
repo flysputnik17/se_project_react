@@ -248,6 +248,19 @@ function App() {
                   />
                 }
               />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
+                    <Profile
+                      handleCardClick={handleCardClick}
+                      handleAddClick={handleAddClick}
+                      clothingItems={clothingItems}
+                      signOut={signOut}
+                    />
+                  </ProtectedRoute>
+                }
+              ></Route>
 
               {/* <Route
                 path="*"
@@ -260,14 +273,6 @@ function App() {
                 }
               /> */}
             </Routes>
-            <ProtectedRoute isLoggedIn={isLoggedIn} path="/profile">
-              <Profile
-                handleCardClick={handleCardClick}
-                handleAddClick={handleAddClick}
-                clothingItems={clothingItems}
-                signOut={signOut}
-              />
-            </ProtectedRoute>
 
             <Footer />
           </div>
