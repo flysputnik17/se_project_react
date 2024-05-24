@@ -45,7 +45,12 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [currentUser, setCurrentUser] = useState({});
+  const [currentUser, setCurrentUser] = useState({
+    username: "",
+    avatar: "",
+    _id: "",
+    token: "",
+  });
 
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const navigate = useNavigate();
@@ -91,20 +96,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const jwt = localStorage.getItem("jwt");
-    console.log("token test: ", jwt);
-    if (!jwt) {
-      return;
-    }
-    auth
-      .getUserInfo(jwt)
-      .then(({ username, email }) => {
-        setIsLoggedIn(true);
-        setCurrentUser({ username, email });
-        navigate("/profile");
-      })
-      .catch(console.error);
-  }, []);
+    checkloggedIn();
+  }, [isLoggedIn]);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -173,10 +166,12 @@ function App() {
 
   const checkloggedIn = () => {
     const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      setIsLoggedIn(true);
+    }
     return auth
       .getUserInfo(jwt)
       .then((res) => {
-        setIsLoggedIn(true);
         setCurrentUser(res);
         navigate("/profile");
       })
@@ -204,7 +199,9 @@ function App() {
         closeActiveModal();
         return checkloggedIn();
       })
-      .catch(console.error);
+      .catch((err) => {
+        console.log("error in handleLogin");
+      });
   };
 
   //signout function removing the token from the server then changing the isLogedIn to false so the user will be sent to the main page and removing the user data
