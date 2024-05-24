@@ -46,6 +46,7 @@
 }
 
 .modal__delete-button {
+  visibility: hidden;
   color: #ff4d00;
   background-color: transparent;
   border: none;
@@ -53,4 +54,10 @@
   font-weight: 700;
   cursor: pointer;
   margin: 20px 32px 0 0;
+}
+.modal__delete-button_visible {
+  visibility: visible;
+}
+.modal__delete-button_hidden {
+  visibility: hidden;
 }

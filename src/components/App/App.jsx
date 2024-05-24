@@ -200,7 +200,7 @@ function App() {
         return checkloggedIn();
       })
       .catch((err) => {
-        console.log("error in handleLogin");
+        console.log("error in handleLogin", err);
       });
   };
 
@@ -242,6 +242,7 @@ function App() {
                     weatherData={weatherData}
                     clothingItems={clothingItems}
                     defaultClothingItems={defaultClothingItems}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />

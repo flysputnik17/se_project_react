@@ -1,7 +1,14 @@
 import "./ClothesSection.css";
 import ItemCard from "../ItemCard/ItemCard";
+import { useContext } from "react";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
 function ClothesSection({ onCardClick, onClick, clothingItems }) {
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = clothingItems.owner === currentUser._id;
+  const cardSectionClassName = `cardSection__cardList ${
+    isOwn ? "cardSection__cardList_visible" : "cardSection__cardList_hidden"
+  }`;
   return (
     <section className="profile__cardSection">
       <div className="profile__cardSection-text">
@@ -15,7 +22,7 @@ function ClothesSection({ onCardClick, onClick, clothingItems }) {
         </button>
       </div>
 
-      <ul className="cardSection__cardList">
+      <ul className={cardSectionClassName}>
         {clothingItems.map((item) => {
           return (
             <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
