@@ -31,6 +31,18 @@ export default class Auth {
     }).then(this.checkResponse);
   }
 
+  edit({ username, avatar }, token) {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ username, avatar }),
+    }).then(this.checkResponse);
+  }
+
   getUserInfo(token) {
     // Send a GET request to /users/me
     return fetch(`${this.baseUrl}/users/me`, {

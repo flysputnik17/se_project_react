@@ -20,7 +20,7 @@ import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import Auth from "../../utils/auth.js";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
-
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 const api = new Api({
   baseUrl: "http://localhost:3001",
   headers: { "Content-Type": "application/json" },
@@ -109,6 +109,10 @@ function App() {
 
   const handleLoginModal = () => {
     setActiveModal("login");
+  };
+
+  const handleEditModal = () => {
+    setActiveModal("edit");
   };
 
   const closeActiveModal = () => {
@@ -212,6 +216,20 @@ function App() {
     closeActiveModal();
   };
 
+  const handleEdit = (data) => {
+    setIsLoggedIn(true);
+    const jwt = localStorage.getItem("jwt");
+    auth
+      .edit(data, jwt)
+      .then((res) => {
+        setCurrentUser(res);
+        closeActiveModal();
+      })
+      .catch((err) => {
+        console.log("error in handleEdit", err);
+      });
+  };
+
   //handleLogin function is called form the Login modal and acceptes two parameters email and passord
   //after thet its calling the auth.login funciton and then setting the token to localStorage
   //after the checkloggedIn function will be called to get the token from the local storage
@@ -255,6 +273,7 @@ function App() {
                       handleAddClick={handleAddClick}
                       clothingItems={clothingItems}
                       signOut={signOut}
+                      handleEditModal={handleEditModal}
                     />
                   </ProtectedRoute>
                 }
@@ -303,6 +322,12 @@ function App() {
               isOpen={activeModal === "login"}
               handleLogin={handleLogin}
               handleSignUpButtonClick={handleSignUpButtonClick}
+            />
+          )}
+          {activeModal === "edit" && (
+            <EditProfileModal
+              isOpen={activeModal === "edit"}
+              handleEdit={handleEdit}
             />
           )}
         </CurrentTemperatureUnitContext.Provider>
