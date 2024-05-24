@@ -52,6 +52,7 @@ function Main({
                       key={item._id}
                       item={item}
                       onCardClick={handleCardClick}
+                      handleCardLike={handleCardLike}
                     />
                   );
                 })}

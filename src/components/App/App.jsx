@@ -301,6 +301,7 @@ function App() {
                       clothingItems={clothingItems}
                       signOut={signOut}
                       handleEditModal={handleEditModal}
+                      handleCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }

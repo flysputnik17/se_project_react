@@ -24,9 +24,7 @@ function ItemCard({ onCardClick, item, handleCardLike }) {
         className="cardSection__card-img"
         src={item.imageUrl}
         alt={item.name}
-        onClick={() => {
-          onCardClick(handleCardClick);
-        }}
+        onClick={handleCardClick}
       ></img>
       <button
         type="button"

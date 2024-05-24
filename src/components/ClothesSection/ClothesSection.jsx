@@ -3,7 +3,12 @@ import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function ClothesSection({ onCardClick, onClick, clothingItems }) {
+function ClothesSection({
+  handleCardLike,
+  onClick,
+  clothingItems,
+  handleCardClick,
+}) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn = clothingItems.owner === currentUser._id;
   const cardSectionClassName = `cardSection__cardList ${
@@ -25,7 +30,12 @@ function ClothesSection({ onCardClick, onClick, clothingItems }) {
       <ul className={cardSectionClassName}>
         {clothingItems.map((item) => {
           return (
-            <ItemCard key={item._id} item={item} onCardClick={onCardClick} />
+            <ItemCard
+              key={item._id}
+              item={item}
+              handleCardLike={handleCardLike}
+              onCardClick={handleCardClick}
+            />
           );
         })}
       </ul>
