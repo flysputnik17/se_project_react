@@ -21,12 +21,9 @@ export default class Auth {
   }
 
   login({ email, password }) {
-    // A POST request is sent to /auth/local.
     return fetch(`${this.baseUrl}/signin`, {
       method: "POST",
       headers: this.headers,
-      // The parameters are wrapped in an object, converted to a JSON
-      // string, and sent in the body of the request.
       body: JSON.stringify({ email, password }),
     }).then(this.checkResponse);
   }
@@ -43,13 +40,12 @@ export default class Auth {
     }).then(this.checkResponse);
   }
 
-  getUserInfo(token) {
-    // Send a GET request to /users/me
+  getUserInfo(jwt) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
+        authorization: `Bearer ${jwt}`,
       },
     }).then(this.checkResponse);
   }

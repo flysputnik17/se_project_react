@@ -14,9 +14,13 @@ export default class Api {
 
   //using the GET method to get the items data from the server
   getInitialItem() {
+    const jwt = localStorage.getItem("jwt");
     return fetch(`${this.baseUrl}/items`, {
       method: "GET",
-      headers: this.headers,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
+      },
     }).then(this.checkResponse);
   }
 

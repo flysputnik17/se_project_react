@@ -85,17 +85,22 @@ function App() {
   }, [activeModal]);
 
   useEffect(() => {
-    api
-      .getInitialItem()
-      .then((res) => {
-        setClothingItems(res);
-      })
-      .catch(console.error);
+    api.getInitialItem().then(setClothingItems).catch(console.error);
   }, []);
 
   useEffect(() => {
-    checkloggedIn();
-  }, [isLoggedIn]);
+    const jwt = localStorage.getItem("jwt");
+    if (jwt) {
+      checkloggedIn(jwt).catch((err) => {
+        if (err.response && err.response.status === 401) {
+          console.error("Token expired or invalid .Loggin out...");
+          signOut();
+        } else {
+          console.error("Error fetching user data:", err);
+        }
+      });
+    }
+  }, []);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -192,12 +197,11 @@ function App() {
 
   const checkloggedIn = () => {
     const jwt = localStorage.getItem("jwt");
-    if (jwt) {
-      setIsLoggedIn(true);
-    }
+
     return auth
       .getUserInfo(jwt)
       .then((res) => {
+        setIsLoggedIn(true);
         setCurrentUser(res);
         navigate("/profile");
       })
@@ -222,6 +226,7 @@ function App() {
       .login(data)
       .then((res) => {
         localStorage.setItem("jwt", res.token); //setting the token to the localstorage when user login
+        setCurrentUser(res);
         closeActiveModal();
         return checkloggedIn();
       })
