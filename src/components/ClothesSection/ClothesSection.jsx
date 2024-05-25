@@ -3,12 +3,7 @@ import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function ClothesSection({
-  handleCardLike,
-  onClick,
-  clothingItems,
-  handleCardClick,
-}) {
+function ClothesSection({ onClick, clothingItems, onCardClick, onCardLike }) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn = clothingItems.owner === currentUser._id;
   const cardSectionClassName = `cardSection__cardList ${
@@ -33,8 +28,8 @@ function ClothesSection({
             <ItemCard
               key={item._id}
               item={item}
-              handleCardLike={handleCardLike}
-              onCardClick={handleCardClick}
+              onCardClick={onCardClick}
+              onCardLike={onCardLike}
             />
           );
         })}
