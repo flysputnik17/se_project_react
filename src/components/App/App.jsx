@@ -85,7 +85,12 @@ function App() {
   }, [activeModal]);
 
   useEffect(() => {
-    api.getInitialItem().then(setClothingItems).catch(console.error);
+    api
+      .getInitialItem()
+      .then((res) => {
+        setClothingItems(res);
+      })
+      .catch(console.error);
   }, []);
 
   useEffect(() => {
@@ -130,8 +135,11 @@ function App() {
   const handleAddItemSubmit = (values) => {
     api
       .addNewItem(values)
-      .then((item) => {
-        setClothingItems([item, ...clothingItems]);
+      .then((res) => {
+        setClothingItems((prevClothingItems) => [
+          res.data,
+          ...prevClothingItems,
+        ]);
         closeActiveModal();
       })
       .catch((err) => {
