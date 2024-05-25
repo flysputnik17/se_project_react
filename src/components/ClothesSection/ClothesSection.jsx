@@ -24,14 +24,19 @@ function ClothesSection({ onClick, clothingItems, onCardClick, onCardLike }) {
 
       <ul className={cardSectionClassName}>
         {clothingItems.map((item) => {
-          return (
-            <ItemCard
-              key={item._id}
-              item={item}
-              onCardClick={onCardClick}
-              onCardLike={onCardLike}
-            />
-          );
+          const isOwn = item.owner === currentUser?._id;
+          if (isOwn) {
+            return (
+              <ItemCard
+                key={item._id}
+                item={item}
+                onCardClick={onCardClick}
+                onCardLike={onCardLike}
+              />
+            );
+          } else {
+            return null;
+          }
         })}
       </ul>
     </section>

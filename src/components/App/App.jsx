@@ -4,11 +4,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import { getWeather, filterWeatherData } from "../../utils/WeatherApi";
-import {
-  coordinates,
-  APIkey,
-  defaultClothingItems,
-} from "../../utils/constants.jsx";
+import { coordinates, APIkey } from "../../utils/constants.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
