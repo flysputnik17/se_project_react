@@ -42,7 +42,7 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
-    username: "",
+    name: "",
     avatar: "",
     _id: "",
     token: "",

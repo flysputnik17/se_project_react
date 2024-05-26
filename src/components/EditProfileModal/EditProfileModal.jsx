@@ -6,7 +6,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 const EditProfileModal = ({ isOpen, handleEdit, onClose }) => {
   const currentUser = useContext(CurrentUserContext);
   const [data, setData] = useState({
-    username: "",
+    name: "",
     avatar: "",
   });
 
@@ -36,15 +36,15 @@ const EditProfileModal = ({ isOpen, handleEdit, onClose }) => {
         Name *
       </label>
       <input
-        id="username"
+        id="name"
         className="modal__input"
-        name="username"
+        name="name"
         type="text"
-        value={data.username}
+        value={data.name}
         onChange={handleChange}
         minLength="1"
         maxLength="30"
-        placeholder={currentUser.username}
+        placeholder={currentUser.name}
         required
       />
 

@@ -9,7 +9,7 @@ const RegisterModal = ({
 }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
   const [avatar, setAvatar] = useState("");
 
   const handleEmailChange = (e) => {
@@ -20,7 +20,7 @@ const RegisterModal = ({
     setPassword(e.target.value);
   };
   const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+    setName(e.target.value);
   };
 
   const handleAvatarChange = (e) => {
@@ -33,7 +33,7 @@ const RegisterModal = ({
   // submission.
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleRegistration({ email, password, username, avatar });
+    handleRegistration({ email, password, name, avatar });
   };
 
   return (
@@ -72,14 +72,14 @@ const RegisterModal = ({
       <label htmlFor="Name" className="modal__label">
         Name*
         <input
-          id="username"
-          name="username"
+          id="name"
+          name="name"
           className="modal__input"
           type="text"
           placeholder="Name"
           minLength="1"
           maxLength="30"
-          value={username}
+          value={name}
           onChange={handleUsernameChange}
           required
         />

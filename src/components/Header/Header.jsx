@@ -37,7 +37,7 @@ function Header({
               </button>
 
               <Link to="/profile" className="header__user-title">
-                {currentUser.username}
+                {currentUser.name}
               </Link>
               <div>
                 {currentUser.avatar === "" ? (
@@ -49,7 +49,7 @@ function Header({
                 ) : (
                   <div className="header__span-container">
                     <span className="header__span">
-                      {currentUser.username.toUpperCase().charAt(0) || ""}
+                      {currentUser.name.toUpperCase().charAt(0) || ""}
                     </span>
                   </div>
                 )}

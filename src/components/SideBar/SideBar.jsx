@@ -17,13 +17,13 @@ function SideBar({ signOut, handleEditModal }) {
         ) : (
           <div className="profile__span-container">
             <span className="profile__span">
-              {currentUser.username.toUpperCase().charAt(0) || ""}
+              {currentUser.name.toUpperCase().charAt(0) || ""}
             </span>
           </div>
         )}
       </div>
 
-      <p className="profile__userSection-title">{currentUser.username}</p>
+      <p className="profile__userSection-title">{currentUser.name}</p>
       <button
         className="profile__userSection-button"
         type="button"

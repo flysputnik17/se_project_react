@@ -12,11 +12,11 @@ export default class Auth {
     return Promise.reject(`Error:${res.status}`); //returning Error status
   }
 
-  register({ email, password, username, avatar }) {
+  register({ email, password, name, avatar }) {
     return fetch(`${this.baseUrl}/signup`, {
       method: "POST",
       headers: this.headers,
-      body: JSON.stringify({ email, password, username, avatar }),
+      body: JSON.stringify({ email, password, name, avatar }),
     }).then(this.checkResponse);
   }
 
@@ -28,7 +28,7 @@ export default class Auth {
     }).then(this.checkResponse);
   }
 
-  edit({ username, avatar }, token) {
+  edit({ name, avatar }, token) {
     return fetch(`${this.baseUrl}/users/me`, {
       method: "PATCH",
       headers: {
@@ -36,7 +36,7 @@ export default class Auth {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ username, avatar }),
+      body: JSON.stringify({ name, avatar }),
     }).then(this.checkResponse);
   }
 
