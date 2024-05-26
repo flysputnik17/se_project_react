@@ -49,7 +49,7 @@ function Header({
                 ) : (
                   <div className="header__span-container">
                     <span className="header__span">
-                      {currentUser.name.toUpperCase().charAt(0) || ""}
+                      {currentUser.name?.toUpperCase().charAt(0) || ""}
                     </span>
                   </div>
                 )}
