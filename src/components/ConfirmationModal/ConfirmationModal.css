@@ -1,0 +1,26 @@
+.confirmationModal {
+  position: relative;
+  background-color: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  max-height: 610px;
+  width: 670px;
+  height: 280px;
+}
+.confirmationModal__buttons {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.confirmation_text {
+  color: #000000;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+.confirmation__deleteButton {
+  color: #ff4d00;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}

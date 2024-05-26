@@ -17,6 +17,7 @@ import Auth from "../../utils/auth.js";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
+import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 const api = new Api({
   baseUrl: "http://localhost:3001",
   headers: { "Content-Type": "application/json" },
@@ -130,6 +131,10 @@ function App() {
   const handleCardClick = (card) => {
     setActiveModal("preview");
     setSelectCard(card);
+  };
+
+  const handleConfirmationClick = () => {
+    setActiveModal("confirmation");
   };
 
   const handleAddItemSubmit = (values) => {
@@ -340,6 +345,13 @@ function App() {
               activeModal={activeModal}
               card={selectedCard}
               onClose={closeActiveModal}
+              handleConfirmationClick={handleConfirmationClick}
+            />
+          )}
+          {activeModal === "confirmation" && (
+            <ConfirmationModal
+              onClose={closeActiveModal}
+              activeModal={activeModal}
               onDelete={handleDeleteItem}
             />
           )}
