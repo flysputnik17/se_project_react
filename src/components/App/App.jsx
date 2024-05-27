@@ -353,6 +353,7 @@ function App() {
               onClose={closeActiveModal}
               activeModal={activeModal}
               onDelete={handleDeleteItem}
+              card={selectedCard}
             />
           )}
 

@@ -3,13 +3,7 @@ import closeButton from "../../assets/closeButton.svg";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function ItemModal({
-  activeModal,
-  onClose,
-  card,
-  onDelete,
-  handleConfirmationClick,
-}) {
+function ItemModal({ activeModal, onClose, card, handleConfirmationClick }) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn = card.owner === currentUser._id && currentUser._id !== undefined;
   const itemDeleteButtonClassName = `modal__delete-button ${
@@ -36,8 +30,6 @@ function ItemModal({
             type="button"
             onClick={() => {
               handleConfirmationClick();
-              //call aconfirmation function that checked if the user submit the delete
-              // onDelete(card);
             }}
           >
             Delete item

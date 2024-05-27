@@ -1,26 +1,58 @@
 .confirmationModal {
-  position: relative;
-  background-color: #fff;
-  border-radius: 20px;
-  overflow: hidden;
-  max-height: 610px;
+  display: flex;
   width: 670px;
   height: 280px;
+  border-radius: 20px;
+  background-color: #fff;
+  position: relative;
 }
-.confirmationModal__buttons {
+.confirmationModal__main {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  flex-direction: column;
+  margin: auto;
 }
-.confirmation_text {
-  color: #000000;
-  font-weight: 700;
+.confirmationModal__main-text {
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-style: normal;
+  font-weight: 500;
   font-size: 20px;
   line-height: 24px;
+  background: transparent;
+  text-align: center;
+  margin: 0;
 }
-.confirmation__deleteButton {
+
+.confirmationModal__main-deleteButton {
+  border: none;
+  margin: 40px 0 24px 0;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
   color: #ff4d00;
-  font-weight: 700;
+  background: transparent;
+  transition: 0.2s ease;
+}
+.confirmationModal__main-deleteButton:hover {
+  cursor: pointer;
+  transform: scale(1.1, 1.1);
+}
+.confirmationModal__main-cancelButton {
+  border: none;
+  font-family: "Cabinet Grotesk", sans-serif;
+  font-style: normal;
+  font-weight: 500;
   font-size: 20px;
   line-height: 24px;
+  color: #000;
+  background: transparent;
+  transition: 0.2s ease;
+  margin: 0;
+  padding: 0;
+}
+
+.confirmationModal__main-cancelButton:hover {
+  opacity: 0.6;
+  cursor: pointer;
 }
