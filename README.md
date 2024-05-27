@@ -10,7 +10,9 @@
 
 in this project i firstly used React, this project is the first step toward a full stack web application , in this first step of the project i implant the web layouts acording to the figma design and used the weather API to display the current temperature and location
 
-## site link https://flysputnik17.github.io/se_project_react/
+## GitHub Repository link https://flysputnik17.github.io/se_project_react/
+
+## Backend link https://github.com/flysputnik17/se_project_express.git
 
 **Figma**
 
