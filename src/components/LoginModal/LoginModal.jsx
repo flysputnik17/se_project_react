@@ -63,7 +63,7 @@ const LoginModal = ({
         Login
       </button>
       <button
-        type="submit"
+        type="button"
         className="Or-Sign-Up__button"
         onClick={handleSignUpButtonClick}
       >

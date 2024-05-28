@@ -9,17 +9,17 @@ function SideBar({ signOut, handleEditModal }) {
     <div className="profile__userSection">
       <div>
         {currentUser.avatar === "" ? (
-          <img
-            className="profile__userSection-avatar"
-            src={currentUser.avatar}
-            alt="avatar"
-          />
-        ) : (
           <div className="profile__span-container">
             <span className="profile__span">
               {currentUser.name.toUpperCase().charAt(0) || ""}
             </span>
           </div>
+        ) : (
+          <img
+            className="profile__userSection-avatar"
+            src={currentUser.avatar}
+            alt="avatar"
+          />
         )}
       </div>
 

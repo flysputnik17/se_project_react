@@ -41,31 +41,31 @@ function Header({
               </Link>
               <div>
                 {currentUser.avatar === "" ? (
-                  <img
-                    className="header__user-avatar"
-                    src={currentUser.avatar}
-                    alt="avatar"
-                  />
-                ) : (
                   <div className="header__span-container">
                     <span className="header__span">
                       {currentUser.name?.toUpperCase().charAt(0) || ""}
                     </span>
                   </div>
+                ) : (
+                  <img
+                    className="header__user-avatar"
+                    src={currentUser.avatar}
+                    alt="avatar"
+                  />
                 )}
               </div>
             </>
           ) : (
             <>
               <button
-                type="submit"
+                type="button"
                 className="header__app-signUp"
                 onClick={handleRigsterModal}
               >
                 Sign Up
               </button>
               <button
-                type="submit"
+                type="button"
                 className="header__app-logIn"
                 onClick={handleLoginModal}
               >

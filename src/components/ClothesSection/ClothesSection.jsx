@@ -3,7 +3,13 @@ import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function ClothesSection({ onClick, clothingItems, onCardClick, onCardLike }) {
+function ClothesSection({
+  onClick,
+  clothingItems,
+  onCardClick,
+  onCardLike,
+  isLoggedIn,
+}) {
   const currentUser = useContext(CurrentUserContext);
   const isOwn = clothingItems.owner === currentUser._id;
   const cardSectionClassName = `cardSection__cardList ${
@@ -32,6 +38,7 @@ function ClothesSection({ onClick, clothingItems, onCardClick, onCardLike }) {
                 item={item}
                 onCardClick={onCardClick}
                 onCardLike={onCardLike}
+                isLoggedIn={isLoggedIn}
               />
             );
           } else {

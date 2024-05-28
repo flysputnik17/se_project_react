@@ -49,8 +49,6 @@ function App() {
     token: "",
   });
 
-  const [isLiked, setIsLiked] = useState(false);
-
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
   const navigate = useNavigate();
 
@@ -97,14 +95,7 @@ function App() {
   useEffect(() => {
     const jwt = localStorage.getItem("jwt");
     if (jwt) {
-      checkloggedIn(jwt).catch((err) => {
-        if (err.response && err.response.status === 401) {
-          console.error("Token expired or invalid .Loggin out...");
-          signOut();
-        } else {
-          console.error("Error fetching user data:", err);
-        }
-      });
+      checkloggedIn(jwt);
     }
   }, []);
 
@@ -176,7 +167,6 @@ function App() {
           setClothingItems((cards) =>
             cards.map((item) => (item._id === id ? updatedCard : item))
           );
-          setIsLiked(true);
         })
         .catch((err) => console.log(err));
     } else {
@@ -186,7 +176,6 @@ function App() {
           setClothingItems((cards) =>
             cards.map((item) => (item._id === id ? updatedCard : item))
           );
-          setIsLiked(false);
         })
         .catch((err) => console.log(err));
     }
@@ -300,6 +289,7 @@ function App() {
                     weatherData={weatherData}
                     clothingItems={clothingItems}
                     onCardLike={handleCardLike}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />
@@ -314,6 +304,7 @@ function App() {
                       signOut={signOut}
                       handleEditModal={handleEditModal}
                       onCardLike={handleCardLike}
+                      isLoggedIn={isLoggedIn}
                     />
                   </ProtectedRoute>
                 }

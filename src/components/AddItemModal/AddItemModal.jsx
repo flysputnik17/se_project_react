@@ -51,7 +51,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
           required
         />
       </label>
-      <label htmlFor="imageURL" className="modal__label">
+      <label htmlFor="imageUrl" className="modal__label">
         Image
         <input
           type="url"
