@@ -43,7 +43,7 @@ const RegisterModal = ({
       onSubmit={handleSubmit}
       onClose={onClose}
     >
-      <label htmlFor="Email" className="modal__label">
+      <label htmlFor="email" className="modal__label">
         Email*
         <input
           type="email"
@@ -69,7 +69,7 @@ const RegisterModal = ({
           required
         />
       </label>
-      <label htmlFor="Name" className="modal__label">
+      <label htmlFor="name" className="modal__label">
         Name*
         <input
           id="name"
@@ -84,7 +84,7 @@ const RegisterModal = ({
           required
         />
       </label>
-      <label htmlFor="Avatar URL *" className="modal__label">
+      <label htmlFor="avatar" className="modal__label">
         Avatar URL *
         <input
           id="avatar"
@@ -102,7 +102,7 @@ const RegisterModal = ({
         Sign up
       </button>
       <button
-        type="submit"
+        type="button"
         className="Or-Login__button"
         onClick={handleLoginButtonClick}
       >
