@@ -4,7 +4,7 @@ import CurrentUserContext from "../../contexts/CurrentUserContext";
 import "./App.css";
 import Header from "../Header/Header.jsx";
 import { getWeather, filterWeatherData } from "../../utils/WeatherApi";
-import { coordinates, APIkey, baseUrl } from "../../utils/constants.jsx";
+import { coordinates, APIkey } from "../../utils/constants.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
@@ -20,7 +20,6 @@ import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import ConfirmationModal from "../ConfirmationModal/ConfirmationModal.jsx";
 
 const api = new Api({
-  baseUrl: baseUrl,
   headers: { "Content-Type": "application/json" },
 });
 const auth = new Auth({ headers: { "Content-Type": "application/json" } });
