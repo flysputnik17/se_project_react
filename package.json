@@ -10,7 +10,7 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* pavel2012155@pavelwtwr.jumpingcrab.com:/home/pavel2012155@wtwr/frontend"
   },
   "dependencies": {
     "dotenv": "^16.4.5",
