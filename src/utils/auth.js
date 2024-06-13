@@ -1,7 +1,4 @@
-const baseUrl =
-  process.env.NODE_ENV === "production"
-    ? "https://pavelwtwr.jumpingcrab.com"
-    : "http://localhost:3001";
+import { baseUrl } from "./constants";
 
 export default class Auth {
   constructor({ headers }) {
