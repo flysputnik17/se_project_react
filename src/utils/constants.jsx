@@ -127,5 +127,5 @@ export const APIkey = "eda9d536bdf5ecbb67925a027587af97";
 
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://pavelwtwr.jumpingcrab.com"
+    ? "https://api.pavelwtwr.jumpingcrab.com"
     : "http://localhost:3001";
