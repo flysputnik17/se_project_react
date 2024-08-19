@@ -109,7 +109,6 @@ export const defaultClothingItems = [
 export const defaultWeatherOptions = {
   day: {
     day: true,
-    //condition for alt?
     url: new URL("../assets/day/default.svg", import.meta.url).href,
   },
   night: {
@@ -127,5 +126,5 @@ export const APIkey = "eda9d536bdf5ecbb67925a027587af97";
 
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.pavelwtwr.jumpingcrab.com"
+    ? "https://wtwrbackend.vercel.app/"
     : "http://localhost:3001";
