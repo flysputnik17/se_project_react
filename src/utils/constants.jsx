@@ -127,4 +127,4 @@ export const APIkey = "eda9d536bdf5ecbb67925a027587af97";
 export const baseUrl =
   process.env.NODE_ENV === "production"
     ? "https://wtwrbackend.vercel.app"
-    : "http://localhost:3001";
+    : "http://localhost:3000";
