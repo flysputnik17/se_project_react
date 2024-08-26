@@ -1,10 +1,6 @@
 module.exports = {
   root: true,
-  env: {
-    browser: true,
-    es2020: true,
-    node: true,
-  },
+  env: { browser: true, es2020: true },
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -20,10 +16,17 @@ module.exports = {
       "warn",
       { allowConstantExport: true },
     ],
-    "react/prop-types": 0, // Disable prop-types validation.
+
+    // Disable prop-types validation.
+    "react/prop-types": 0,
   },
+
+  // Add an overrides array. Without this, ESLint could only be run via
+  // the npm run lint command. Adding this will allow it to be run also
+  // via the global `npx eslint .` command.
   overrides: [
     {
+      // Without this, `npx eslint .` doesn't run on jsx files.
       files: ["*.js", "*.jsx"],
     },
   ],
