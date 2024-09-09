@@ -1,6 +1,6 @@
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://se-project-express-alpha.vercel.app"
+    ? "https://se-project-express-pavel-bandurins-projects.vercel.app"
     : "http://localhost:3001";
 
 export default class Auth {
