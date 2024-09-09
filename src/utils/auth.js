@@ -1,3 +1,5 @@
+import process from "node";
+
 export const baseUrl =
   process.env.NODE_ENV === "production"
     ? "https://se-project-express-pavel-bandurins-projects.vercel.app"
