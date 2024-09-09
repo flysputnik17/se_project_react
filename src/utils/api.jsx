@@ -1,6 +1,6 @@
 export const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://wtwrbackend.vercel.app"
+    ? "https://se-project-express-alpha.vercel.app/"
     : "http://localhost:3001";
 
 export default class Api {
