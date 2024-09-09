@@ -1,4 +1,7 @@
-import { baseUrl } from "./constants";
+export const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://wtwrbackend.vercel.app"
+    : "http://localhost:3001";
 
 export default class Api {
   constructor({ headers }) {
